@@ -1,220 +1,402 @@
-<!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&D Solutions Technology | IA para Hoteles Boutique</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8f6f0;
-            color: #0f172a;
-        }
-
-        .font-serif-luxury {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .btn-gold {
-            background-color: #d4af37;
-            color: #0f172a;
-            font-weight: 700;
-            transition: all 0.2s ease;
-        }
-
-        .btn-gold:hover {
-            background-color: #c59b27;
-            transform: translateY(-2px);
-        }
-
-        .card-clean {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .card-clean:hover {
-            border-color: #d4af37;
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
-</head>
-<body class="bg-[#f8f6f0]">
-
-    <!-- Header Limpio y Claro -->
-    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold text-lg">
-                    M&D
-                </div>
-                <span class="font-bold text-lg text-slate-900 tracking-tight">M&D Solutions Technology</span>
-            </div>
-
-            <a href="#contacto" class="btn-gold px-6 py-3 rounded-xl text-xs uppercase tracking-wider shadow-sm">
-                Agendar Consulta
-            </a>
+<!doctype html>
+<html lang="es"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260925-05-46ec85d","C":{"Abril Fatface":"YACgEZbkUVE,0","Alfa Slab One":"YACgEYS9sJU,0","Anton":"YACgEcYqQ-A,0","Archivo":"YACgEZulLoA,0","Arial Narrow":"YAGyDvJ_4Ts,0","Arial Rounded MT Bold":"YAFcfoaHu-s,0","Arial":"YAGyDvJ_4Ts,0","Avenir Next":"YAFcfmNq6UY,0","Baloo 2":"YADK30bC6HQ,0","Bebas Neue":"YACgESME5ew,0","Bricolage Grotesque":"YAFyMcdwzpc,0","Broken Glyph":"YADZ-exUkv0,0","Canva Sans":"YAFdJjTk5UU,1","Caveat":"YALBs2ploWQ,0","Comic Sans MS":"YAFcfvtOAUY,1","Cormorant Garamond":"YAFdJhX-538,0","Courier New":"YAGzXiGs0_8,0","Courier Prime":"YAD1aFjegN8,0","DM Sans":"YAD1aU3sLnI,0","DM Serif Display":"YAD1aYG82rc,0","Forum":"YACgEcnnqB4,0","Fraunces":"YAFdJpU7Kkk,0","Georgia":"YAGzXkO0pEM,0","Ghost Mono":"YAHQutsX00Q,0","Hanken Grotesk":"YAFcfhwp99E,0","Helvetica Neue":"YAFcf6CtJfI,0","Helvetica":"YAFcf6CtJfI,0","IBM Plex Mono":"YAFdJkmvhGI,0","Impact":"YAFcfnjI7Vk,0","Instrument Serif":"YAHFeOnZNEk,0","Inter":"YAFdJvSyp_k,3","Iowan Old Style":"YAGNIFa8j9o,0","Jacques Francois":"YADK3zbC6RM,0","JetBrains Mono":"YAFdJksXcAk,0","Josefin Sans":"YAFdJjvw9Ps,0","Lato":"YAFdJuFCnaw,0","Libre Baskerville":"YACgEUFdPdA,0","Lobster":"YAD8SnSjSFI,0","Lora":"YACgEXvxf8Q,0","Merriweather":"YACgEXvHxxs,0","Montserrat":"YAFdtQi73Xs,0","Nunito":"YAFdJoNRMmU,1","Oleo Script":"YACgEQQ14jI,0","Oswald":"YACgEQY10lw,0","Pacifico":"YADLjORQ1u4,0","Phantom Sans":"YAFdJvgJ5TU,0","Playfair Display":"YAFdJhem5V8,1","Plus Jakarta Sans":"YAGvf3_u0_Q,0","Poppins":"YAFdJjbTu24,1","Press Start 2P":"YAFyGr-8pmQ,0","Quicksand":"YAFdJpYtCxE,1","Raleway":"YAFdJhmxbVQ,1","Roboto Slab":"YAFdJswIKAg,0","Rockwell":"YAFcfyVZnN0,0","Rye":"YACgEdQP21k,0","Segoe UI":"YAHNdRD1Klw,0","Source Sans 3":"YAG4lO1Mj10,0","Source Serif 4":"YACgEfdj394,0","Space Grotesk":"YADZ-dYEmhg,0","Space Mono":"YADW1-vpsoc,0","Times New Roman":"YAGzXW3gftg,0","Times":"YAGzXW3gftg,0","Trebuchet MS":"YAFcfrglpVA,0","UV Display":"YAEdVfSSpYo,0","UV Sans":"YAFdJvgJ5TU,0","Ubuntu":"YACgERDU--Q,0","Verdana":"YAGzXTctYtQ,0","Work Sans":"YAGXhLOKv44,0","Yellowtail":"YACgEYG4kG4,0","ui-monospace":"YAD1aFjegN8,0","ui-sans-serif":"YACkoD1yZN0,0"}}');</script><script src="/_sdk/6542d56fbfe7a3eb.telemetry_sdk.js" integrity="sha512-ECdM0nK7EkwDuOqho2qxgyRQXyBHk9hZqRKMBr+Xsu6zjeHlt+qkO2N2YRiHN7Kg4e1fEHDhjIp4bGJYVypv1g=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluciones Digitales para Turismo</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--ink:#082b49;--teal:#0c9c9d;--deep:#061d31;--warm:#f29a52;--mist:#eff8f7;--paper:#fffdf9}
+    html{scroll-behavior:smooth} body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink)}
+    h1,h2{font-family:Fraunces,serif}.focus-ring:focus-visible{outline:3px solid var(--warm);outline-offset:3px}
+    .hero-wash{background:linear-gradient(90deg,rgba(4,31,52,.93),rgba(4,31,52,.70) 55%,rgba(4,31,52,.22))}
+    .cta-wash{background:linear-gradient(100deg,rgba(5,39,63,.94),rgba(5,39,63,.62))}
+    .btn-primary{background:var(--teal);color:#fff;box-shadow:0 10px 22px rgba(12,156,157,.2);transition:transform .2s,background .2s}.btn-primary:hover{transform:translateY(-2px);background:#087d7e}
+    .btn-warm{background:var(--warm);color:#fff;transition:transform .2s,background .2s}.btn-warm:hover{transform:translateY(-2px);background:#dc803c}
+    .eyebrow{color:#0c777b;letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-size:.72rem}
+    .reveal{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}.reveal.is-visible{opacity:1;transform:none}
+    .service-track{display:flex;gap:1rem;transition:transform .45s cubic-bezier(.2,.8,.2,1)}.service-slide{min-width:calc(100% - .12rem)}
+    .service-card{border:1px solid #dcebe9;background:#fff;transition:transform .2s,box-shadow .2s}.service-card:hover{transform:translateY(-3px);box-shadow:0 15px 30px rgba(8,43,73,.09)}
+    .service-detail,.faq-answer{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}.service-detail>div,.faq-answer>div{overflow:hidden}.service-card.is-open .service-detail,.faq-item.open .faq-answer{grid-template-rows:1fr}.faq-item.open .faq-icon{transform:rotate(45deg)}
+    .dot{width:.5rem;height:.5rem;border-radius:99px;background:#bdd6d5;transition:.2s}.dot.active{width:1.45rem;background:var(--teal)}
+    .lang-select{appearance:none;background:#f4faf9 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23082b49' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat right .7rem center;padding-right:2.3rem}
+    @media(min-width:640px){.service-slide{min-width:calc(50% - .5rem)}}@media(min-width:1024px){.service-slide{min-width:calc(33.333% - .68rem)}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+  </style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="/_sdk/6c2ecc939521f244.data_sdk.js" type="text/javascript" integrity="sha512-gRx8s+XsZDN6mSIQu2sivLZysbV0WHhb5kXNUWlgVb5lCMU1foJYukyMEDPv8Tnoocb8iwqB4XdRrWc7oEGzIQ=="></script>
+  <script src="/_sdk/ef0304cb8c7ed696.editing_sdk.js" type="text/javascript" integrity="sha512-kmL9L5Yuj57MQaequKbMA3aGpT/5lBUp10iGA3e3qnmMLs2ZZQ0poCcIfdd5rTgrhEvNPe4HK0ohePW7ZpgAFg=="></script>
+  <script src="/_sdk/ddcab3e45959c817.resizing_sdk.js" type="text/javascript" integrity="sha512-VAviUKfZVzugWBSeULYjSljTX+nb84wc6Zzbx5GQaQgh6X2ISSjXi8eIiCDGdwDh10esJMY0+QFQgUy9NcrTlQ=="></script>
+ </head>
+ <body data-template-id="__page-root" class="w-full overflow-x-hidden" style="background: rgb(255, 253, 249);">
+  <header data-template-id="site-header" class="canva-header sticky top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur" style="background: rgb(255, 255, 255);">
+   <nav class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 lg:px-8" aria-label="Navegación principal"><a href="#inicio" class="focus-ring rounded"><span data-template-id="brand-name" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Soluciones Digitales para Turismo</span></a>
+    <div class="hidden items-center gap-5 md:flex"><a class="nav-link focus-ring rounded text-sm font-semibold text-[#31536d]" href="#inicio" data-i18n="navHome">Inicio</a> <a class="nav-link focus-ring rounded text-sm font-semibold text-[#31536d]" href="#servicios" data-i18n="navServices">Servicios</a> <a class="nav-link focus-ring rounded text-sm font-semibold text-[#31536d]" href="#planes" data-i18n="navPlans">Planes</a> <a class="nav-link focus-ring rounded text-sm font-semibold text-[#31536d]" href="#contacto" data-i18n="navContact">Contacto</a>
+    </div>
+    <div class="flex items-center gap-2"><label class="sr-only" for="language-select" data-i18n="languageLabel">Idioma</label> <select id="language-select" class="lang-select focus-ring rounded-full border border-[#c8dfdc] px-3 py-2 text-xs font-bold text-[#082b49]" aria-label="Seleccionar idioma"> <option value="es">Español</option><option value="ca">Catalán / Valencià</option><option value="gl">Galego</option><option value="eu">Euskera</option><option value="en">English</option><option value="de">Deutsch</option> </select> <a data-template-id="nav-cta" href="#contacto" class="canva-button focus-ring btn-primary hidden rounded-full px-4 py-2 text-sm font-bold sm:inline-flex" style="background: rgb(12, 156, 157); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar diagnóstico</a> <button id="menu-toggle" class="focus-ring rounded p-2 md:hidden" type="button" aria-label="Abrir menú" aria-expanded="false"><i data-lucide="menu"></i></button>
+    </div>
+   </nav>
+   <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white px-5 py-4 md:hidden">
+    <div class="flex flex-col gap-4"><a class="text-sm font-semibold" href="#inicio" data-i18n="navHome">Inicio</a><a class="text-sm font-semibold" href="#servicios" data-i18n="navServices">Servicios</a><a class="text-sm font-semibold" href="#planes" data-i18n="navPlans">Planes</a><a class="text-sm font-semibold" href="#contacto" data-i18n="navContact">Contacto</a>
+    </div>
+   </div>
+  </header>
+  <main>
+   <section id="inicio" class="relative isolate overflow-hidden"><img data-template-id="hero-image" class="canva-image absolute inset-0 -z-20 h-full w-full object-cover" loading="lazy" src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Resort luminoso con piscina, sombrillas y tumbonas">
+    <div class="hero-wash absolute inset-0 -z-10"></div>
+    <div class="mx-auto grid min-h-[520px] max-w-7xl items-center px-5 py-20 lg:px-8">
+     <div class="max-w-2xl">
+      <p data-template-id="hero-kicker" class="canva-text reveal mb-4 font-bold uppercase tracking-[.18em] text-[#86e0d8]" style="color: rgb(134, 224, 216); font-weight: 700; font-style: normal; font-size: 16px;">Estrategia digital para alojamientos</p>
+      <h1 data-template-id="hero-title" class="canva-text reveal text-white" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 32px;">Más reservas directas para tu alojamiento turístico</h1>
+      <p data-template-id="hero-text" class="canva-text reveal mt-5 max-w-xl leading-7 text-slate-100" style="color: rgb(241, 245, 249); font-weight: 400; font-style: normal; font-size: 16px;">Webs profesionales y conectadas con reservas para hoteles, casas rurales y negocios turísticos.</p>
+      <div class="reveal mt-7 flex flex-col gap-3 sm:flex-row"><a data-template-id="hero-primary-cta" href="#contacto" class="canva-button focus-ring btn-warm rounded-full px-6 py-3 text-center font-bold" style="background: rgb(242, 154, 82); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar diagnóstico gratuito</a> <a data-template-id="hero-secondary-cta" href="#servicios" class="canva-button focus-ring rounded-full border border-white/65 bg-white/10 px-6 py-3 text-center font-bold text-white backdrop-blur transition hover:bg-white hover:text-[#082b49]" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Ver soluciones</a>
+      </div>
+      <div class="reveal mt-8 grid max-w-xl gap-2 sm:grid-cols-3">
+       <p data-template-id="hero-benefit-1" class="canva-tag rounded-xl border border-white/20 bg-white/10 p-3 text-center text-sm font-bold text-white backdrop-blur" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Reservas 24/7</p>
+       <p data-template-id="hero-benefit-2" class="canva-tag rounded-xl border border-white/20 bg-white/10 p-3 text-center text-sm font-bold text-white backdrop-blur" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Diseño para móvil</p>
+       <p data-template-id="hero-benefit-3" class="canva-tag rounded-xl border border-white/20 bg-white/10 p-3 text-center text-sm font-bold text-white backdrop-blur" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Canal propio</p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="bg-[#eff8f7] py-14 lg:py-18">
+    <div class="mx-auto grid max-w-7xl items-center gap-9 px-5 lg:grid-cols-2 lg:px-8">
+     <div class="reveal">
+      <p data-template-id="problem-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Problema y oportunidad</p>
+      <h2 data-template-id="problem-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Tu web debe trabajar por tu alojamiento</h2>
+      <p data-template-id="problem-text" class="canva-text mt-4 max-w-xl leading-7 text-[#416177]" style="color: rgb(65, 97, 119); font-weight: 400; font-style: normal; font-size: 16px;">Una web lenta o sin reservas directas puede hacerte depender más de plataformas externas.</p>
+      <div class="mt-6 grid gap-3">
+       <div class="rounded-xl bg-white p-4">
+        <h3 data-template-id="problem-point-1-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Baja conversión</h3>
+        <p data-template-id="problem-point-1-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Las visitas no encuentran un recorrido claro para consultar y reservar.</p>
+       </div>
+       <div class="rounded-xl bg-white p-4">
+        <h3 data-template-id="problem-point-2-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Exceso de comisiones</h3>
+        <p data-template-id="problem-point-2-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Cada reserva que no llega por tu canal propio puede reducir tu margen.</p>
+       </div>
+       <div class="rounded-xl bg-white p-4">
+        <h3 data-template-id="problem-point-3-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Sin comunicación directa</h3>
+        <p data-template-id="problem-point-3-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Pierdes la oportunidad de conocer al huésped desde el primer contacto.</p>
+       </div>
+      </div>
+     </div>
+     <div class="reveal relative">
+      <img data-template-id="problem-image" class="canva-image h-[330px] w-full rounded-[1.6rem] object-cover shadow-xl" loading="lazy" src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Habitación de hotel moderna y luminosa con decoración neutra">
+      <div data-template-id="problem-image-card" class="canva-card absolute -bottom-4 left-4 max-w-xs rounded-xl p-4 shadow-xl" style="background: rgb(255, 255, 255);">
+       <p data-template-id="problem-image-card-text" class="canva-text text-sm font-semibold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Convierte cada visita en una oportunidad de reserva directa.</p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="servicios" class="py-14 lg:py-18">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+     <div class="reveal max-w-3xl">
+      <p data-template-id="services-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Servicios</p>
+      <h2 data-template-id="services-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Soluciones digitales para el sector hotelero y turístico</h2>
+      <p data-template-id="services-intro" class="canva-text mt-4 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Una presencia conectada y fácil de recorrer para que tus huéspedes reserven con confianza.</p>
+     </div>
+     <div class="reveal mt-7 overflow-hidden">
+      <div id="service-track" class="service-track">
+       <article data-template-id="service-card-1" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="monitor-smartphone" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-1-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Diseño y desarrollo web</h3>
+        <p data-template-id="service-1-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Webs rápidas, claras y pensadas para mostrar tu alojamiento.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailWeb">Una presencia clara para presentar tu alojamiento y facilitar el contacto.</p>
+         </div>
         </div>
-    </header>
-
-    <!-- Hero Section Claro y de Gran Impacto -->
-    <section class="py-20 lg:py-28">
-        <div class="max-w-5xl mx-auto px-6 text-center space-y-8">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs uppercase tracking-widest">
-                Inteligencia Artificial para Alojamientos en España
-            </span>
-
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif-luxury font-bold text-slate-900 leading-tight">
-                Más reservas directas. <br>
-                <span class="text-amber-600 italic">Cero comisiones a terceros.</span>
-            </h1>
-
-            <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto font-normal leading-relaxed">
-                Aumenta el margen neto de tu hotel boutique o casa rural con un asistente de IA que atiende a tus huéspedes 24/7 en WhatsApp y procesa cobros inmediatos con Redsys y Bizum.
-            </p>
-
-            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contacto" class="btn-gold px-8 py-4 rounded-xl text-sm uppercase tracking-wider shadow-md">
-                    Solicitar Demostración Directa
-                </a>
-                <a href="#comparativa" class="bg-white border border-slate-300 text-slate-800 font-bold px-8 py-4 rounded-xl text-sm uppercase tracking-wider hover:bg-slate-50 transition-all">
-                    Ver Ahorro de Comisiones
-                </a>
-            </div>
+       </article>
+       <article data-template-id="service-card-2" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="calendar-check-2" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-2-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Motor de reservas</h3>
+        <p data-template-id="service-2-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Un proceso sencillo para transformar visitas en reservas.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailBooking">Un recorrido de consulta y reserva desde tu propio canal.</p>
+         </div>
         </div>
-    </section>
-
-    <!-- Comparativa Clara de Gran Tamaño (Fácil de Leer) -->
-    <section id="comparativa" class="py-20 bg-white border-t border-b border-slate-200">
-        <div class="max-w-6xl mx-auto px-6 space-y-12">
-            
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-serif-luxury font-bold text-slate-900">
-                    El cambio real para la rentabilidad de tu hotel
-                </h2>
-                <p class="text-slate-600 text-base">Compara la diferencia entre depender de OTAs o controlar tu canal directo.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <!-- Modelo Tradicional -->
-                <div class="p-8 rounded-2xl bg-rose-50 border-2 border-rose-200 space-y-6">
-                    <div class="flex items-center space-x-3 text-rose-700 font-bold text-xl">
-                        <i class="fa-solid fa-circle-xmark text-2xl"></i>
-                        <h3>Sin M&D Solutions (OTAs)</h3>
-                    </div>
-                    <ul class="space-y-4 text-base text-slate-700 font-medium">
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-xmark text-rose-600 text-xl mt-0.5"></i>
-                            <span>Pagas entre un <strong>18% y 25% de comisión</strong> en cada reserva.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-xmark text-rose-600 text-xl mt-0.5"></i>
-                            <span>Respuestas tardías a consultas nocturnas en WhatsApp.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-xmark text-rose-600 text-xl mt-0.5"></i>
-                            <span>Pagos diferidos y cobros que tardan semanas en llegar a tu banco.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Con M&D Solutions -->
-                <div class="p-8 rounded-2xl bg-emerald-50 border-2 border-emerald-300 space-y-6 shadow-md">
-                    <div class="flex items-center space-x-3 text-emerald-800 font-bold text-xl">
-                        <i class="fa-solid fa-circle-check text-2xl text-emerald-600"></i>
-                        <h3>Con M&D Solutions Technology</h3>
-                    </div>
-                    <ul class="space-y-4 text-base text-slate-800 font-medium">
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-check text-emerald-600 text-xl mt-0.5"></i>
-                            <span><strong class="text-emerald-900">0% Comisiones:</strong> El dinero de las reservas va entero a tu cuenta bancaria.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-check text-emerald-600 text-xl mt-0.5"></i>
-                            <span><strong class="text-emerald-900">Atención 24/7:</strong> La IA contesta en menos de 3 segundos por WhatsApp.</span>
-                        </li>
-                        <li class="flex items-start space-x-3">
-                            <i class="fa-solid fa-check text-emerald-600 text-xl mt-0.5"></i>
-                            <span><strong class="text-emerald-900">Cobros por Bizum/Redsys:</strong> Transacciones directas e inmediatas.</span>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
+       </article>
+       <article data-template-id="service-card-3" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="map-pin" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-3-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">SEO local</h3>
+        <p data-template-id="service-3-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Más visibilidad para búsquedas de alojamiento y destinos cercanos.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailSeo">Información esencial para búsquedas vinculadas a tu destino.</p>
+         </div>
         </div>
-    </section>
-
-    <!-- Módulos Limpios en 3 Tarjetas Blancas -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-6 space-y-12">
-            <div class="text-center space-y-3">
-                <h2 class="text-3xl sm:text-4xl font-serif-luxury font-bold text-slate-900">Tres pilares para tu tranquilidad operativa</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card-clean p-8 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900">Asistente de IA en WhatsApp</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Atiende preguntas sobre servicios, disponibilidad y habitaciones en cualquier idioma a toda hora.
-                    </p>
-                </div>
-
-                <div class="card-clean p-8 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-credit-card"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900">Cobro Directo Redsys & Bizum</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Procesa los cobros de reservas de forma segura directo a tu banco sin pasar por intermediarios.
-                    </p>
-                </div>
-
-                <div class="card-clean p-8 space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center text-xl font-bold">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <h3 class="font-bold text-xl text-slate-900">Check-in Digital Automatizado</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Los huéspedes completan su registro previo en el móvil y se genera el parte de viajeros oficial.
-                    </p>
-                </div>
-            </div>
+       </article>
+       <article data-template-id="service-card-4" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="workflow" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-4-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">PMS y channel manager</h3>
+        <p data-template-id="service-4-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Integraciones para mantener disponibilidad y canales coordinados.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailPms">Conecta las herramientas de tu operación diaria.</p>
+         </div>
         </div>
-    </section>
-
-    <!-- Formulario Limpio de Contacto -->
-    <section id="contacto" class="py-20 bg-slate-900 text-white">
-        <div class="max-w-3xl mx-auto px-6 space-y-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-serif-luxury font-bold">Solicita una demostración personalizada</h2>
-            <p class="text-slate-300 text-sm">Hablemos sobre cómo optimizar la rentabilidad de tu alojamiento.</p>
-
-            <form onsubmit="alert('Consulta recibida por los fundadores. Nos pondremos en contacto a la brevedad.'); return false;" class="space-y-4 text-left">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" required placeholder="Nombre y Apellidos *" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
-                    <input type="text" required placeholder="Nombre del Alojamiento *" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
-                </div>
-                <input type="email" required placeholder="Correo Corporativo *" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
-                <button type="submit" class="w-full btn-gold py-4 rounded-xl text-sm uppercase tracking-wider font-bold">
-                    Enviar Consulta →
-                </button>
-            </form>
+       </article>
+       <article data-template-id="service-card-5" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="megaphone" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-5-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Marketing digital</h3>
+        <p data-template-id="service-5-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Campañas y acciones para atraer demanda cualificada.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailMarketing">Acciones alineadas con tus objetivos de captación.</p>
+         </div>
         </div>
-    </section>
+       </article>
+       <article data-template-id="service-card-6" class="canva-card service-card service-slide rounded-2xl p-5" style="background: rgb(255, 255, 255);">
+        <i data-lucide="shield-check" class="mb-4 text-[#0c9c9d]"></i>
+        <h3 data-template-id="service-6-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Mantenimiento y soporte</h3>
+        <p data-template-id="service-6-text" class="canva-text mt-2 text-sm leading-6 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Tu sitio seguro, actualizado y acompañado en el día a día.</p><button class="service-toggle focus-ring mt-3 text-sm font-bold text-[#0c777b]" type="button" aria-expanded="false" data-i18n="details">Ver detalle</button>
+        <div class="service-detail">
+         <div>
+          <p class="pt-3 text-sm text-[#557187]" data-i18n="detailSupport">Mantén tu sitio actualizado y acompañado.</p>
+         </div>
+        </div>
+       </article>
+      </div>
+     </div>
+     <div class="mt-5 flex items-center justify-between">
+      <div class="flex gap-2" id="service-dots" aria-label="Posición del carrusel"></div>
+      <div class="flex gap-2">
+       <button id="service-prev" class="focus-ring rounded-full border border-[#c8dfdc] p-2" type="button" aria-label="Servicio anterior"><i data-lucide="arrow-left" width="17"></i></button><button id="service-pause" class="focus-ring rounded-full border border-[#c8dfdc] p-2" type="button" aria-label="Pausar carrusel"><i data-lucide="pause" width="17"></i></button><button id="service-next" class="focus-ring rounded-full border border-[#c8dfdc] p-2" type="button" aria-label="Servicio siguiente"><i data-lucide="arrow-right" width="17"></i></button>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="bg-[#082b49] py-14 text-white lg:py-18">
+    <div class="mx-auto grid max-w-7xl items-center gap-9 px-5 lg:grid-cols-2 lg:px-8"><img data-template-id="value-image" class="canva-image reveal h-[330px] w-full rounded-[1.6rem] object-cover" loading="lazy" src="https://images.pexels.com/photos/1268871/pexels-photo-1268871.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Resort con piscina infinita y vistas luminosas al océano">
+     <div class="reveal">
+      <p data-template-id="value-kicker" class="canva-text font-bold uppercase tracking-[.18em] text-[#86e0d8]" style="color: rgb(134, 224, 216); font-weight: 700; font-style: normal; font-size: 16px;">Propuesta de valor</p>
+      <h2 data-template-id="value-title" class="canva-text mt-3" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">No solo creamos tu página web: creamos un canal de ventas</h2>
+      <p data-template-id="value-text" class="canva-text mt-4 leading-7 text-slate-300" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Diseñamos el recorrido digital para que el huésped encuentre, entienda y reserve tu propuesta sin fricción.</p>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+       <div data-template-id="value-item-1" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Más reservas directas</div>
+       <div data-template-id="value-item-2" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Disponibilidad actualizada</div>
+       <div data-template-id="value-item-3" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Pagos online</div>
+       <div data-template-id="value-item-4" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgba(255, 255, 255, 0.1); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Conexión con WhatsApp</div>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section id="proceso" class="py-14 lg:py-18">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+     <div class="reveal max-w-2xl">
+      <p data-template-id="process-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Cómo trabajamos</p>
+      <h2 data-template-id="process-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Un proceso claro de principio a fin</h2>
+     </div>
+     <ol class="reveal mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <li class="rounded-xl bg-[#eff8f7] p-4"><b class="text-[#0c9c9d]">01</b><h3 data-template-id="process-1-title" class="canva-text mt-2 font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Diagnóstico</h3><p data-template-id="process-1-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Analizamos objetivos y herramientas actuales.</p></li>
+      <li class="rounded-xl bg-[#eff8f7] p-4"><b class="text-[#0c9c9d]">02</b><h3 data-template-id="process-2-title" class="canva-text mt-2 font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Propuesta</h3><p data-template-id="process-2-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Definimos una solución adaptada a tu alojamiento.</p></li>
+      <li class="rounded-xl bg-[#eff8f7] p-4"><b class="text-[#0c9c9d]">03</b><h3 data-template-id="process-3-title" class="canva-text mt-2 font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Diseño</h3><p data-template-id="process-3-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Organizamos contenidos y experiencia de reserva.</p></li>
+      <li class="rounded-xl bg-[#eff8f7] p-4"><b class="text-[#0c9c9d]">04</b><h3 data-template-id="process-4-title" class="canva-text mt-2 font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Desarrollo y lanzamiento</h3><p data-template-id="process-4-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Construimos, conectamos y revisamos cada detalle.</p></li>
+      <li class="rounded-xl bg-[#eff8f7] p-4"><b class="text-[#f29a52]">05</b><h3 data-template-id="process-5-title" class="canva-text mt-2 font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Mejora continua</h3><p data-template-id="process-5-text" class="canva-text mt-1 text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Acompañamos la evolución de tu canal digital.</p></li>
+     </ol>
+    </div>
+   </section>
+   <section id="planes" class="bg-[#eff8f7] py-14 lg:py-18">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+     <div class="reveal text-center">
+      <p data-template-id="plans-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Planes</p>
+      <h2 data-template-id="plans-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Planes adaptados a cada alojamiento</h2>
+     </div>
+     <div class="mt-8 grid gap-5 lg:grid-cols-3">
+      <article data-template-id="plan-card-1" class="canva-card reveal rounded-[1.4rem] border border-[#d8e9e7] p-6" style="background: rgb(255, 255, 255);">
+       <h3 data-template-id="plan-1-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Plan Inicio</h3>
+       <p data-template-id="plan-1-price" class="canva-text mt-3 text-2xl font-bold" style="color: rgb(12, 156, 157); font-weight: 700; font-style: normal; font-size: 16px;">desde 900 €</p>
+       <ul class="mt-5 space-y-2 text-sm text-[#48677b]">
+        <li data-template-id="plan-1-feature-1" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">Web de hasta 5 secciones y diseño responsive</li>
+        <li data-template-id="plan-1-feature-2" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">Galería, formulario y WhatsApp</li>
+        <li data-template-id="plan-1-feature-3" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">SEO básico</li>
+       </ul><a data-template-id="plan-1-cta" href="#contacto" class="canva-button focus-ring mt-6 block rounded-full border border-[#0c9c9d] px-5 py-3 text-center font-bold" style="color: rgb(12, 156, 157); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar propuesta</a>
+      </article>
+      <article data-template-id="plan-card-2" class="canva-card reveal rounded-[1.4rem] p-6 text-white shadow-xl ring-2 ring-[#f29a52]" style="background: rgb(8, 43, 73);">
+       <p data-template-id="plan-2-badge" class="canva-tag inline-block rounded-full px-3 py-1 text-xs font-bold" style="background: rgb(242, 154, 82); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Más elegido</p>
+       <h3 data-template-id="plan-2-title" class="canva-text mt-3 font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Plan Reservas</h3>
+       <p data-template-id="plan-2-price" class="canva-text mt-3 text-2xl font-bold" style="color: rgb(134, 224, 216); font-weight: 700; font-style: normal; font-size: 16px;">desde 1.800 €</p>
+       <ul class="mt-5 space-y-2 text-sm text-slate-200">
+        <li data-template-id="plan-2-feature-1" class="canva-text" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">Todo lo anterior + motor y calendario</li>
+        <li data-template-id="plan-2-feature-2" class="canva-text" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">Pagos online y confirmaciones automáticas</li>
+        <li data-template-id="plan-2-feature-3" class="canva-text" style="color: rgb(226, 232, 240); font-weight: 400; font-style: normal; font-size: 16px;">Hasta dos idiomas</li>
+       </ul><a data-template-id="plan-2-cta" href="#contacto" class="canva-button focus-ring btn-warm mt-6 block rounded-full px-5 py-3 text-center font-bold" style="background: rgb(242, 154, 82); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar propuesta</a>
+      </article>
+      <article data-template-id="plan-card-3" class="canva-card reveal rounded-[1.4rem] border border-[#d8e9e7] p-6" style="background: rgb(255, 255, 255);">
+       <h3 data-template-id="plan-3-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Plan Crecimiento</h3>
+       <p data-template-id="plan-3-price" class="canva-text mt-3 text-2xl font-bold" style="color: rgb(12, 156, 157); font-weight: 700; font-style: normal; font-size: 16px;">desde 3.000 €</p>
+       <ul class="mt-5 space-y-2 text-sm text-[#48677b]">
+        <li data-template-id="plan-3-feature-1" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">SEO local avanzado y tres o más idiomas</li>
+        <li data-template-id="plan-3-feature-2" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">Blog turístico e integración hotelera</li>
+        <li data-template-id="plan-3-feature-3" class="canva-text" style="color: rgb(72, 103, 123); font-weight: 400; font-style: normal; font-size: 16px;">Automatizaciones e informes</li>
+       </ul><a data-template-id="plan-3-cta" href="#contacto" class="canva-button focus-ring mt-6 block rounded-full border border-[#0c9c9d] px-5 py-3 text-center font-bold" style="color: rgb(12, 156, 157); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar propuesta</a>
+      </article>
+     </div>
+     <p data-template-id="plans-note" class="canva-text mx-auto mt-6 max-w-3xl text-center text-sm text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Los precios finales dependen del alcance, las integraciones y las necesidades de cada proyecto.</p>
+    </div>
+   </section>
+   <section class="py-14">
+    <div class="mx-auto max-w-7xl px-5 lg:px-8">
+     <div data-template-id="recurring-panel" class="canva-panel reveal grid gap-6 rounded-[1.6rem] p-6 lg:grid-cols-2" style="background: rgb(223, 243, 240);">
+      <div>
+       <p data-template-id="recurring-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Servicios recurrentes</p>
+       <h2 data-template-id="recurring-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Mantenimiento mensual desde 129 €/mes</h2>
+       <p data-template-id="recurring-text" class="canva-text mt-3 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Hosting, seguridad, copias, actualizaciones, soporte y cambios menores para que tu web siga trabajando.</p>
+      </div>
+      <div class="rounded-xl bg-white p-5">
+       <h3 data-template-id="growth-title" class="canva-text font-bold" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 19px;">Crecimiento continuo</h3>
+       <p data-template-id="growth-text" class="canva-text mt-2 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Añade SEO, contenidos y campañas digitales según tus objetivos de captación.</p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="bg-[#eff8f7] py-14 lg:py-18">
+    <div class="mx-auto grid max-w-7xl gap-9 px-5 lg:grid-cols-2 lg:px-8">
+     <div class="reveal">
+      <p data-template-id="different-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Diferenciadores</p>
+      <h2 data-template-id="different-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Especialistas en turismo, no solo en diseño web</h2>
+      <div class="mt-6 grid gap-3 sm:grid-cols-2">
+       <div data-template-id="different-item-1" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgb(255, 255, 255); color: rgb(8, 43, 73); font-weight: 600; font-style: normal; font-size: 16px;">Especialización en alojamientos</div>
+       <div data-template-id="different-item-2" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgb(255, 255, 255); color: rgb(8, 43, 73); font-weight: 600; font-style: normal; font-size: 16px;">Enfoque en reservas directas</div>
+       <div data-template-id="different-item-3" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgb(255, 255, 255); color: rgb(8, 43, 73); font-weight: 600; font-style: normal; font-size: 16px;">Soporte cercano</div>
+       <div data-template-id="different-item-4" class="canva-tag rounded-xl p-3 font-semibold" style="background: rgb(255, 255, 255); color: rgb(8, 43, 73); font-weight: 600; font-style: normal; font-size: 16px;">Herramientas hoteleras conectadas</div>
+      </div>
+     </div><img data-template-id="different-image" class="canva-image reveal h-[330px] w-full rounded-[1.6rem] object-cover shadow-xl" loading="lazy" src="https://images.pexels.com/photos/463734/pexels-photo-463734.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1280" alt="Cabaña de madera en un valle verde y montañoso">
+    </div>
+   </section>
+   <section id="preguntas" class="py-14 lg:py-18">
+    <div class="mx-auto max-w-3xl px-5">
+     <div class="reveal text-center">
+      <p data-template-id="faq-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Preguntas frecuentes</p>
+      <h2 data-template-id="faq-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Resolvemos tus dudas principales</h2>
+     </div>
+     <div class="reveal mt-7 space-y-3">
+      <article class="faq-item rounded-xl border border-[#d8e9e7] bg-white p-4">
+       <button class="faq-toggle focus-ring flex w-full items-center justify-between gap-5 text-left font-bold" type="button" aria-expanded="false"><span data-template-id="faq-q1" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">¿Qué incluye una web para mi alojamiento?</span><i data-lucide="plus" class="faq-icon text-[#0c9c9d]"></i></button>
+       <div class="faq-answer">
+        <div>
+         <p data-template-id="faq-a1" class="canva-text pt-3 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Incluye una estructura para mostrar tu propuesta, facilitar el contacto y presentar información relevante para huéspedes.</p>
+        </div>
+       </div>
+      </article>
+      <article class="faq-item rounded-xl border border-[#d8e9e7] bg-white p-4">
+       <button class="faq-toggle focus-ring flex w-full items-center justify-between gap-5 text-left font-bold" type="button" aria-expanded="false"><span data-template-id="faq-q2" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">¿Qué es el motor de reservas?</span><i data-lucide="plus" class="faq-icon text-[#0c9c9d]"></i></button>
+       <div class="faq-answer">
+        <div>
+         <p data-template-id="faq-a2" class="canva-text pt-3 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Es el recorrido que permite consultar disponibilidad y avanzar en una reserva desde tu propia web.</p>
+        </div>
+       </div>
+      </article>
+      <article class="faq-item rounded-xl border border-[#d8e9e7] bg-white p-4">
+       <button class="faq-toggle focus-ring flex w-full items-center justify-between gap-5 text-left font-bold" type="button" aria-expanded="false"><span data-template-id="faq-q3" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">¿Qué incluye el mantenimiento?</span><i data-lucide="plus" class="faq-icon text-[#0c9c9d]"></i></button>
+       <div class="faq-answer">
+        <div>
+         <p data-template-id="faq-a3" class="canva-text pt-3 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Incluye hosting, seguridad, copias de respaldo, actualizaciones, soporte y cambios menores.</p>
+        </div>
+       </div>
+      </article>
+      <article class="faq-item rounded-xl border border-[#d8e9e7] bg-white p-4">
+       <button class="faq-toggle focus-ring flex w-full items-center justify-between gap-5 text-left font-bold" type="button" aria-expanded="false"><span data-template-id="faq-q4" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">¿Cómo empieza el proyecto?</span><i data-lucide="plus" class="faq-icon text-[#0c9c9d]"></i></button>
+       <div class="faq-answer">
+        <div>
+         <p data-template-id="faq-a4" class="canva-text pt-3 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Comenzamos analizando tu situación, objetivos y herramientas para preparar una propuesta adaptada.</p>
+        </div>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="relative isolate overflow-hidden py-16">
+    <img data-template-id="cta-image" class="canva-image absolute inset-0 -z-20 h-full w-full object-cover" loading="lazy" src="https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="Piscina de hotel elegante al atardecer">
+    <div class="cta-wash absolute inset-0 -z-10"></div>
+    <div class="reveal mx-auto max-w-4xl px-5 text-center">
+     <h2 data-template-id="cta-title" class="canva-text text-white" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Convierte tu web en tu mejor canal de reservas</h2>
+     <p data-template-id="cta-text" class="canva-text mx-auto mt-4 max-w-2xl leading-7 text-slate-100" style="color: rgb(241, 245, 249); font-weight: 400; font-style: normal; font-size: 16px;">Cuéntanos cómo funciona actualmente tu alojamiento y te propondremos una solución digital adaptada.</p><a data-template-id="cta-button" href="#contacto" class="canva-button focus-ring btn-warm mt-6 inline-block rounded-full px-7 py-3 font-bold" style="background: rgb(242, 154, 82); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Solicitar diagnóstico gratuito</a>
+    </div>
+   </section>
+   <section id="contacto" class="py-14 lg:py-18">
+    <div class="mx-auto grid max-w-7xl gap-9 px-5 lg:grid-cols-[.8fr_1.2fr] lg:px-8">
+     <aside class="reveal">
+      <p data-template-id="contact-kicker" class="canva-text eyebrow" style="color: rgb(12, 119, 123); font-weight: 700; font-style: normal; font-size: 16px;">Contacto</p>
+      <h2 data-template-id="contact-title" class="canva-text mt-3" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 24px;">Hablemos de tu alojamiento</h2>
+      <p data-template-id="contact-text" class="canva-text mt-4 leading-7 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Comparte tu situación actual y prepararemos una primera orientación para tu proyecto digital.</p>
+      <div class="mt-6 space-y-4 text-sm">
+       <p><strong data-template-id="contact-phone-label" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Teléfono</strong><br><span data-template-id="contact-phone" class="canva-text text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Añadir teléfono</span></p>
+       <p><strong data-template-id="contact-email-label" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Email</strong><br><span data-template-id="contact-email" class="canva-text text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Añadir email</span></p>
+       <p><strong data-template-id="contact-location-label" class="canva-text" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Ubicación</strong><br><span data-template-id="contact-location" class="canva-text text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Añadir ubicación</span></p>
+      </div>
+     </aside>
+     <form id="contact-form" class="reveal rounded-[1.4rem] border border-[#d9e9e7] bg-white p-5 shadow-sm sm:p-7">
+      <div class="grid gap-4 sm:grid-cols-2">
+       <div>
+        <label data-template-id="label-nombre" class="canva-text mb-2 block text-sm font-bold" for="nombre" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Nombre</label><input id="nombre" name="nombre" required="" autocomplete="name" class="focus-ring w-full rounded-xl border border-slate-300 px-4 py-3" type="text">
+       </div>
+       <div>
+        <label data-template-id="label-alojamiento" class="canva-text mb-2 block text-sm font-bold" for="alojamiento" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Alojamiento o empresa</label><input id="alojamiento" name="alojamiento" required="" class="focus-ring w-full rounded-xl border border-slate-300 px-4 py-3" type="text">
+       </div>
+       <div>
+        <label data-template-id="label-email" class="canva-text mb-2 block text-sm font-bold" for="email" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Email</label><input id="email" name="email" required="" autocomplete="email" class="focus-ring w-full rounded-xl border border-slate-300 px-4 py-3" type="email">
+       </div>
+       <div>
+        <label data-template-id="label-telefono" class="canva-text mb-2 block text-sm font-bold" for="telefono" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Teléfono</label><input id="telefono" name="telefono" autocomplete="tel" class="focus-ring w-full rounded-xl border border-slate-300 px-4 py-3" type="tel">
+       </div>
+      </div>
+      <div class="mt-4">
+       <label data-template-id="label-tipo" class="canva-text mb-2 block text-sm font-bold" for="tipo_negocio" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Tipo de negocio</label><select id="tipo_negocio" name="tipo_negocio" required="" class="focus-ring w-full rounded-xl border border-slate-300 bg-white px-4 py-3"><option value="" data-i18n="selectOption">Selecciona una opción</option><option data-i18n="hotel">Hotel</option><option data-i18n="hostel">Hostal</option><option data-i18n="rural">Casa rural</option><option data-i18n="apartment">Apartamento turístico</option><option data-i18n="camping">Camping</option><option data-i18n="other">Otro</option></select>
+      </div>
+      <div class="mt-4">
+       <label data-template-id="label-mensaje" class="canva-text mb-2 block text-sm font-bold" for="mensaje" style="color: rgb(8, 43, 73); font-weight: 700; font-style: normal; font-size: 16px;">Mensaje</label><textarea id="mensaje" name="mensaje" required="" rows="4" class="focus-ring w-full rounded-xl border border-slate-300 px-4 py-3"></textarea>
+      </div>
+      <p data-template-id="privacy-note" class="canva-text mt-3 text-xs leading-5 text-[#557187]" style="color: rgb(85, 113, 135); font-weight: 400; font-style: normal; font-size: 16px;">Al enviar este formulario aceptas que usemos tus datos para responder a tu consulta.</p><button data-template-id="form-submit" class="canva-button focus-ring btn-primary mt-5 rounded-full px-6 py-3 font-bold" type="submit" style="background: rgb(12, 156, 157); color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Enviar solicitud</button>
+      <p id="form-status" class="mt-3 text-sm font-semibold" aria-live="polite"></p>
+     </form>
+    </div>
+   </section>
+  </main>
+  <footer data-template-id="site-footer" class="canva-footer bg-[#061d31] text-white" style="background: rgb(6, 29, 49);">
+   <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 lg:flex-row lg:items-center lg:justify-between lg:px-8">
+    <div>
+     <p data-template-id="footer-brand" class="canva-text font-bold" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">Soluciones Digitales para Turismo</p>
+     <p data-template-id="footer-text" class="canva-text mt-1 text-sm text-slate-400" style="color: rgb(148, 163, 184); font-weight: 400; font-style: normal; font-size: 16px;">Soluciones digitales orientadas a reservas directas.</p>
+    </div>
+    <div class="flex flex-wrap gap-4 text-sm">
+     <a data-template-id="footer-privacy" href="#contacto" class="canva-link focus-ring text-slate-300" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Privacidad</a><a data-template-id="footer-cookies" href="#contacto" class="canva-link focus-ring text-slate-300" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Cookies</a><a data-template-id="footer-legal" href="#contacto" class="canva-link focus-ring text-slate-300" style="color: rgb(203, 213, 225); font-weight: 400; font-style: normal; font-size: 16px;">Aviso legal</a>
+    </div>
+   </div>
+  </footer>
+  <script>
+document.addEventListener("DOMContentLoaded",()=>{
+  lucide.createIcons();
+  const translations={
+    es:{navHome:"Inicio",navServices:"Servicios",navPlans:"Planes",navContact:"Contacto",languageLabel:"Idioma",details:"Ver detalle",detailWeb:"Una presencia clara para presentar tu alojamiento y facilitar el contacto.",detailBooking:"Un recorrido de consulta y reserva desde tu propio canal.",detailSeo:"Información esencial para búsquedas vinculadas a tu destino.",detailPms:"Conecta las herramientas de tu operación diaria.",detailMarketing:"Acciones alineadas con tus objetivos de captación.",detailSupport:"Mantén tu sitio actualizado y acompañado.",selectOption:"Selecciona una opción",hotel:"Hotel",hostel:"Hostal",rural:"Casa rural",apartment:"Apartamento turístico",camping:"Camping",other:"Otro",sending:"Enviando solicitud…",success:"Gracias. Tu solicitud se ha enviado correctamente.",notReady:"El formulario se está preparando. Inténtalo en unos segundos.",failed:"No pudimos confirmar el envío. Vuelve a intentarlo más tarde.",unavailable:"El formulario no está disponible en este momento."},
+    ca:{navHome:"Inici",navServices:"Serveis",navPlans:"Plans",navContact:"Contacte",languageLabel:"Idioma",details:"Veure detalls",detailWeb:"Una presència clara per presentar el teu allotjament i facilitar el contacte.",detailBooking:"Un recorregut de consulta i reserva des del teu propi canal.",detailSeo:"Informació essencial per a cerques vinculades a la teva destinació.",detailPms:"Connecta les eines de la teva operativa diària.",detailMarketing:"Accions alineades amb els teus objectius de captació.",detailSupport:"Mantén el teu lloc actualitzat i acompanyat.",selectOption:"Selecciona una opció",hotel:"Hotel",hostel:"Hostal",rural:"Casa rural",apartment:"Apartament turístic",camping:"Càmping",other:"Altres",sending:"Enviant sol·licitud…",success:"Gràcies. La teva sol·licitud s'ha enviat correctament.",notReady:"El formulari s'està preparant. Torna-ho a provar d'aquí a uns segons.",failed:"No hem pogut confirmar l'enviament. Torna-ho a provar més tard.",unavailable:"El formulari no està disponible ara mateix."},
+    gl:{navHome:"Inicio",navServices:"Servizos",navPlans:"Plans",navContact:"Contacto",languageLabel:"Idioma",details:"Ver detalle",detailWeb:"Unha presenza clara para presentar o teu aloxamento e facilitar o contacto.",detailBooking:"Un percorrido de consulta e reserva desde a túa propia canle.",detailSeo:"Información esencial para buscas vinculadas ao teu destino.",detailPms:"Conecta as ferramentas da túa operación diaria.",detailMarketing:"Accións aliñadas cos teus obxectivos de captación.",detailSupport:"Mantén o teu sitio actualizado e acompañado.",selectOption:"Selecciona unha opción",hotel:"Hotel",hostel:"Hostal",rural:"Casa rural",apartment:"Apartamento turístico",camping:"Cámping",other:"Outro",sending:"Enviando solicitude…",success:"Grazas. A túa solicitude enviouse correctamente.",notReady:"O formulario estase preparando. Téntao nuns segundos.",failed:"Non puidemos confirmar o envío. Téntao de novo máis tarde.",unavailable:"O formulario non está dispoñible neste momento."},
+    eu:{navHome:"Hasiera",navServices:"Zerbitzuak",navPlans:"Planak",navContact:"Kontaktua",languageLabel:"Hizkuntza",details:"Xehetasunak ikusi",detailWeb:"Zure ostatuaren aurkezpena eta harremana errazteko presentzia argia.",detailBooking:"Kontsulta eta erreserba egiteko ibilbidea zure kanaletik.",detailSeo:"Zure helmugarekin lotutako bilaketetarako funtsezko informazioa.",detailPms:"Zure eguneroko jarduerako tresnak konektatzen ditu.",detailMarketing:"Erakartzeko helburuekin bat datozen ekintzak.",detailSupport:"Mantendu zure gunea eguneratuta eta lagunduta.",selectOption:"Hautatu aukera bat",hotel:"Hotela",hostel:"Ostatua",rural:"Landa-etxea",apartment:"Apartamentu turistikoa",camping:"Kanpina",other:"Beste bat",sending:"Eskaera bidaltzen…",success:"Eskerrik asko. Zure eskaera behar bezala bidali da.",notReady:"Inprimakia prestatzen ari da. Saiatu berriro segundo batzuen barruan.",failed:"Ezin izan dugu bidalketa baieztatu. Saiatu geroago berriro.",unavailable:"Inprimakia ez dago erabilgarri une honetan."},
+    en:{navHome:"Home",navServices:"Services",navPlans:"Plans",navContact:"Contact",languageLabel:"Language",details:"View details",detailWeb:"A clear presence to present your property and make contact easy.",detailBooking:"An enquiry and booking journey from your own channel.",detailSeo:"Essential information for searches connected to your destination.",detailPms:"Connect the tools used in your daily operation.",detailMarketing:"Actions aligned with your acquisition goals.",detailSupport:"Keep your site current and supported.",selectOption:"Select an option",hotel:"Hotel",hostel:"Hostel",rural:"Rural accommodation",apartment:"Tourist apartment",camping:"Camping",other:"Other",sending:"Sending request…",success:"Thank you. Your request has been sent successfully.",notReady:"The form is getting ready. Please try again in a few seconds.",failed:"We could not confirm your submission. Please try again later.",unavailable:"The form is not available at the moment."},
+    de:{navHome:"Start",navServices:"Leistungen",navPlans:"Pakete",navContact:"Kontakt",languageLabel:"Sprache",details:"Details ansehen",detailWeb:"Ein klarer Auftritt, um Ihre Unterkunft vorzustellen und Kontakt zu erleichtern.",detailBooking:"Ein Anfrage- und Buchungsweg über Ihren eigenen Kanal.",detailSeo:"Wichtige Informationen für Suchen rund um Ihr Reiseziel.",detailPms:"Verbindet die Werkzeuge Ihres täglichen Betriebs.",detailMarketing:"Maßnahmen im Einklang mit Ihren Gewinnungszielen.",detailSupport:"Halten Sie Ihre Website aktuell und gut betreut.",selectOption:"Option auswählen",hotel:"Hotel",hostel:"Hostel",rural:"Landunterkunft",apartment:"Ferienwohnung",camping:"Campingplatz",other:"Andere",sending:"Anfrage wird gesendet…",success:"Vielen Dank. Ihre Anfrage wurde erfolgreich gesendet.",notReady:"Das Formular wird vorbereitet. Bitte versuchen Sie es in einigen Sekunden erneut.",failed:"Wir konnten die Übermittlung nicht bestätigen. Bitte versuchen Sie es später erneut.",unavailable:"Das Formular ist derzeit nicht verfügbar."}
+  };
+  let currentLanguage="es";
+  function applyLanguage(lang){currentLanguage=lang;document.documentElement.lang=lang;document.querySelectorAll("[data-i18n]").forEach(el=>{const value=translations[lang][el.dataset.i18n];if(value)el.textContent=value});document.getElementById("language-select").setAttribute("aria-label",translations[lang].languageLabel)}
+  document.getElementById("language-select").addEventListener("change",e=>applyLanguage(e.target.value));
 
-    <!-- Footer -->
-    <footer class="bg-slate-950 text-slate-500 py-6 text-center text-xs">
-        <p>© 2026 M&D Solutions Technology. María Elena Álvarez & Daniel Alberto Wolhein — Co-Fundadores.</p>
-    </footer>
+  const menu=document.getElementById("mobile-menu"),toggle=document.getElementById("menu-toggle");
+  toggle.addEventListener("click",()=>{const open=menu.classList.toggle("hidden")===false;toggle.setAttribute("aria-expanded",String(open))});
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{menu.classList.add("hidden");toggle.setAttribute("aria-expanded","false")}));
+  if(!matchMedia("(prefers-reduced-motion: reduce)").matches){document.querySelectorAll(".reveal").forEach(el=>new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("is-visible")}),{threshold:.12}).observe(el))}else{document.querySelectorAll(".reveal").forEach(el=>el.classList.add("is-visible"))}
+  document.querySelectorAll(".faq-toggle").forEach(button=>button.addEventListener("click",()=>{const item=button.closest(".faq-item"),open=item.classList.toggle("open");button.setAttribute("aria-expanded",String(open))}));
+  document.querySelectorAll(".service-toggle").forEach(button=>button.addEventListener("click",()=>{const card=button.closest(".service-card"),open=card.classList.toggle("is-open");button.setAttribute("aria-expanded",String(open))}));
 
-</body>
-</html>
+  const track=document.getElementById("service-track"),slides=[...document.querySelectorAll(".service-slide")],dots=document.getElementById("service-dots"),pause=document.getElementById("service-pause");let current=0,playing=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+  slides.forEach((_,i)=>{const b=document.createElement("button");b.className="dot focus-ring";b.type="button";b.setAttribute("aria-label","Ir al servicio "+(i+1));b.addEventListener("click",()=>{current=i;renderServices()});dots.appendChild(b)});
+  function visible(){return innerWidth>=1024?3:innerWidth>=640?2:1}function renderServices(){const max=Math.max(0,slides.length-visible());if(current>max)current=max;const width=slides[0].getBoundingClientRect().width+16;track.style.transform=`translateX(-${current*width}px)`;[...dots.children].forEach((dot,i)=>dot.classList.toggle("active",i===current))}
+  document.getElementById("service-next").addEventListener("click",()=>{current=current>=slides.length-visible()?0:current+1;renderServices()});document.getElementById("service-prev").addEventListener("click",()=>{current=current<=0?Math.max(0,slides.length-visible()):current-1;renderServices()});
+  pause.addEventListener("click",()=>{playing=!playing;pause.innerHTML=playing?'<i data-lucide="pause" width="17"></i>':'<i data-lucide="play" width="17"></i>';lucide.createIcons()});window.addEventListener("resize",renderServices);renderServices();setInterval(()=>{if(playing){current=current>=slides.length-visible()?0:current+1;renderServices()}},4500);
+
+  const form=document.getElementById("contact-form"),status=document.getElementById("form-status");let ready=true;
+  window.dataSdk.init({onDataChanged(){}}).then(result=>{if(!result.isOk){ready=false;status.textContent=translations[currentLanguage].unavailable;status.style.color="#b54708"}}).catch(()=>{ready=false;status.textContent=translations[currentLanguage].unavailable;status.style.color="#b54708"});
+  form.addEventListener("submit",async event=>{event.preventDefault();if(!form.reportValidity())return;if(!ready){status.textContent=translations[currentLanguage].notReady;status.style.color="#b54708";return}const button=event.submitter;button.disabled=true;button.style.opacity=".65";status.textContent=translations[currentLanguage].sending;status.style.color="#0c777b";const values=new FormData(form);try{const result=await window.dataSdk.create({nombre:values.get("nombre").trim(),alojamiento:values.get("alojamiento").trim(),email:values.get("email").trim(),telefono:values.get("telefono").trim(),tipo_negocio:values.get("tipo_negocio"),mensaje:values.get("mensaje").trim(),fecha_envio:new Date().toISOString()});if(result.isOk){form.reset();status.textContent=translations[currentLanguage].success;status.style.color="#087d4d"}else{status.textContent=translations[currentLanguage].failed;status.style.color="#b54708"}}catch{status.textContent=translations[currentLanguage].failed;status.style.color="#b54708"}finally{button.disabled=false;button.style.opacity="1"}});
+});
+</script>
+ 
+</body></html>
