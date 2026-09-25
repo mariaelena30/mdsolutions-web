@@ -3,281 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&D Solutions Technology | Soluciones de IA para Hoteles Boutique</title>
+    <title>M&D Solutions Technology | Soluciones Efectivas para Alojamientos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap');
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #070a12;
-            color: #e2e8f0;
-            overflow-x: hidden;
+            background-color: #f7f5f0;
+            color: #1e293b;
         }
 
-        .font-serif-title {
+        .font-serif-luxury {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Glassmorphism Ejecutivo */
-        .premium-card {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .bg-luxury-navy {
+            background-color: #0e1a2b;
         }
 
-        .premium-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+        .bg-luxury-sand {
+            background-color: #f7f5f0;
         }
 
-        .gold-badge {
-            font-size: 0.75rem;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            padding: 0.35rem 0.85rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            background: rgba(212, 175, 55, 0.08);
-            color: #fef08a;
+        .bg-luxury-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
         }
 
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #9a3412 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-bronze {
+            color: #b8860b;
         }
 
-        .btn-gold {
-            background: linear-gradient(135deg, #d4af37 0%, #b48a1d 100%);
-            color: #070a12;
-            font-weight: 700;
-            transition: all 0.3s ease;
+        .btn-bronze {
+            background-color: #c59b27;
+            color: #ffffff;
+            transition: all 0.2s ease;
         }
 
-        .btn-gold:hover {
-            background: linear-gradient(135deg, #fef08a 0%, #d4af37 100%);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        .btn-bronze:hover {
+            background-color: #a8821d;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #070a12; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #d4af37; }
+        .btn-navy {
+            background-color: #0e1a2b;
+            color: #ffffff;
+        }
+
+        .btn-navy:hover {
+            background-color: #1a2e48;
+        }
     </style>
 </head>
-<body class="relative">
+<body class="bg-luxury-sand">
 
-    <!-- Navbar Elegante -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-[#070a12]/80 backdrop-blur-xl border-b border-slate-800/80">
+    <!-- Header Corporativo Elegante -->
+    <header class="bg-luxury-navy text-white sticky top-0 z-50 border-b border-slate-800">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 flex items-center justify-center font-bold text-slate-950 text-lg shadow-md">
+                <div class="w-9 h-9 rounded bg-amber-600/30 border border-amber-500/40 text-amber-200 flex items-center justify-center font-serif-luxury font-bold text-lg">
                     M&D
                 </div>
-                <div>
-                    <span class="font-extrabold text-base tracking-wider text-white block leading-none">M&D Solutions</span>
-                    <span class="text-[10px] text-amber-300 tracking-widest uppercase font-medium">Technology España</span>
-                </div>
+                <span class="font-serif-luxury font-semibold text-lg tracking-wide text-white">M&D Solutions Technology</span>
             </div>
 
-            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold text-slate-300 uppercase tracking-wider">
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-wider uppercase text-slate-300 font-medium">
                 <a href="#soluciones" class="hover:text-amber-300 transition-colors">Soluciones</a>
-                <a href="#ventajas" class="hover:text-amber-300 transition-colors">Tecnología</a>
-                <a href="#experiencia" class="hover:text-amber-300 transition-colors">Demostración</a>
+                <a href="#operacion" class="hover:text-amber-300 transition-colors">Herramientas</a>
+                <a href="#propuesta" class="hover:text-amber-300 transition-colors">Propuesta de Valor</a>
             </nav>
 
-            <div>
-                <a href="#contacto" class="btn-gold px-5 py-2.5 rounded-xl text-xs uppercase tracking-wider shadow-lg flex items-center space-x-2">
-                    <span>Agendar Consulta</span>
-                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </a>
-            </div>
+            <a href="#contacto" class="btn-bronze px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider">
+                Agendar Consulta
+            </a>
         </div>
     </header>
 
-    <!-- Hero Section Sofisticado -->
-    <section class="pt-36 pb-24 relative z-10 overflow-hidden">
-        <!-- Glow suave de fondo -->
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-amber-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <!-- Hero Section con Fotografía de Interiores de Lujo -->
+    <section class="relative bg-luxury-navy text-white py-24 overflow-hidden border-b border-slate-800">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80" alt="Hotel Interior" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="max-w-5xl mx-auto px-6 relative z-10 space-y-8">
+            <span class="text-xs uppercase tracking-widest text-amber-300/80 font-semibold block">// TECNOLOGÍA Y GESTIÓN PARA ALOJAMIENTOS</span>
+            
+            <h1 class="text-4xl sm:text-6xl font-serif-luxury font-bold leading-tight">
+                Soluciones efectivas para organizar, gestionar y hacer crecer tu alojamiento.
+            </h1>
 
-        <div class="max-w-7xl mx-auto px-6 relative">
-            <div class="grid lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Columna Texto -->
-                <div class="lg:col-span-7 space-y-8">
-                    <div class="inline-flex items-center space-x-2">
-                        <span class="gold-badge">
-                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
-                            MOTOR DE INTELIGENCIA ARTIFICIAL HOTELERA
-                        </span>
-                    </div>
+            <p class="text-base sm:text-lg text-slate-300 max-w-2xl font-light leading-relaxed">
+                M&D Solutions Technology ayuda a hoteles boutique, casas rurales y espacios de hospedaje a optimizar su operativa diaria, captar reservas directas sin comisiones y brindar una atención impecable.
+            </p>
 
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-title font-bold leading-tight text-white">
-                        Eleva la rentabilidad directa de tu <span class="gold-gradient-text italic">hotel boutique</span>.
-                    </h1>
-
-                    <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-light">
-                        Diseñamos ecosistemas digitales con asistentes virtuales de IA que ofrecen atención ejecutiva 24/7 a tus huéspedes, procesan reservas directas inmediatas y cobran mediante <strong>Redsys, Bizum y tarjeta</strong> sin comisiones a terceros.
-                    </p>
-
-                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                        <a href="#contacto" class="btn-gold px-8 py-4 rounded-xl text-center text-sm shadow-xl">
-                            Solicitar Demo Personalizada
-                        </a>
-                        <a href="#soluciones" class="bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl text-center text-sm border border-slate-700/80 transition-all">
-                            Explorar Soluciones
-                        </a>
-                    </div>
-
-                    <!-- Métricas Empresariales -->
-                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-slate-800/80">
-                        <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-amber-300 font-serif-title">0 %</span>
-                            <span class="text-xs text-slate-400 block mt-1">Comisión por reserva directa</span>
-                        </div>
-                        <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-white font-serif-title">&lt; 3 seg</span>
-                            <span class="text-xs text-slate-400 block mt-1">Tiempo de respuesta de la IA</span>
-                        </div>
-                        <div>
-                            <span class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-serif-title">100 %</span>
-                            <span class="text-xs text-slate-400 block mt-1">Cobros seguros Redsys / Bizum</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Columna Visual: Interfaz del Asistente de IA -->
-                <div class="lg:col-span-5">
-                    <div class="premium-card p-6 border-amber-500/20 shadow-2xl relative">
-                        
-                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
-                                <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                                <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                            </div>
-                            <span class="text-xs font-mono text-amber-300/80 uppercase">Asistente IA Concierge</span>
-                        </div>
-
-                        <!-- Chat Simulado -->
-                        <div class="my-6 space-y-4 text-xs leading-relaxed">
-                            <div class="bg-slate-900/90 p-4 rounded-2xl border border-slate-800 text-slate-300">
-                                <span class="text-amber-300 font-semibold block mb-1">Huésped VIP:</span>
-                                "¿Tenéis disponibilidad de Suite Deluxe para 2 personas este fin de semana con vistas al mar?"
-                            </div>
-
-                            <div class="bg-amber-500/10 p-4 rounded-2xl border border-amber-500/20 text-slate-200">
-                                <span class="text-emerald-400 font-semibold block mb-1">Concierge Virtual M&D:</span>
-                                "¡Hola! Sí, contamos con la Suite Marítima disponible. Incluye desayuno gourmet y acceso al Spa. Puedes confirmar tu reserva al instante por 180€/noche mediante Bizum o Tarjeta en este enlace seguro."
-                            </div>
-                        </div>
-
-                        <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
-                            <span>Sincronización con PMS</span>
-                            <span class="text-emerald-400 font-medium flex items-center space-x-1.5">
-                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                                <span>Operativo 24/7</span>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
+                <a href="#contacto" class="btn-bronze px-8 py-4 rounded font-semibold text-xs uppercase tracking-wider text-center">
+                    Solicitar Diagnóstico
+                </a>
+                <a href="#soluciones" class="border border-slate-600 hover:border-slate-400 text-slate-200 px-8 py-4 rounded font-semibold text-xs uppercase tracking-wider text-center transition-all">
+                    Ver Ecosistema
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- Pilares Tecnológicos B2B -->
-    <section id="soluciones" class="py-24 relative z-10 bg-slate-950/60 border-t border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-                <span class="text-amber-300 font-semibold text-xs uppercase tracking-widest">Soluciones de Alto Impacto</span>
-                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-white">Diseñado para la hotelería de excelencia</h2>
-                <p class="text-slate-400 text-sm">Combinamos arquitectura de software de alta velocidad con Inteligencia Artificial conversacional.</p>
+    <!-- Herramientas Claras para Operación Ágil -->
+    <section id="operacion" class="py-20 bg-luxury-sand">
+        <div class="max-w-7xl mx-auto px-6 space-y-12">
+            <div class="space-y-2">
+                <span class="text-xs font-semibold text-amber-700 uppercase tracking-widest">Módulos Inteligentes</span>
+                <h2 class="text-3xl font-serif-luxury font-bold text-slate-900">Herramientas claras para una operación más ágil</h2>
+                <p class="text-slate-600 text-sm">Diseñado para simplificar la gestión diaria sin complicaciones técnicas.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Tarjeta 1 -->
-                <div class="premium-card p-8 space-y-4">
-                    <div class="w-12 h-12 bg-amber-500/10 text-amber-300 rounded-2xl flex items-center justify-center text-xl border border-amber-500/20">
+                <!-- Card 1 -->
+                <div class="bg-luxury-card p-8 rounded-lg shadow-sm space-y-4">
+                    <div class="w-10 h-10 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-sitemap"></i>
+                    </div>
+                    <h3 class="font-serif-luxury font-bold text-xl text-slate-900">Organización y gestión operativa</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Control unificado de estados de habitaciones, asignación de tareas de limpieza y recepción en tiempo real.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-luxury-card p-8 rounded-lg shadow-sm space-y-4">
+                    <div class="w-10 h-10 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">
                         <i class="fa-solid fa-comments"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white">Concierge IA en WhatsApp & Web</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Atención personalizada en múltiples idiomas las 24 horas. Resuelve preguntas frecuentes, muestra fotos de suites y concreta ventas en caliente.
+                    <h3 class="font-serif-luxury font-bold text-xl text-slate-900">Guía y atención con IA</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Asistente virtual en WhatsApp y Web que atiende consultas frecuentes de huéspedes las 24 horas y cotiza al instante.
                     </p>
                 </div>
 
-                <!-- Tarjeta 2 -->
-                <div class="premium-card p-8 space-y-4">
-                    <div class="w-12 h-12 bg-sky-500/10 text-sky-400 rounded-2xl flex items-center justify-center text-xl border border-sky-500/20">
+                <!-- Card 3 -->
+                <div class="bg-luxury-card p-8 rounded-lg shadow-sm space-y-4">
+                    <div class="w-10 h-10 rounded bg-amber-100 text-amber-800 flex items-center justify-center text-lg font-bold">
                         <i class="fa-solid fa-credit-card"></i>
                     </div>
-                    <h3 class="text-lg font-bold text-white">Pasarelas de Pago Oficiales</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Integración nativa con TPV Virtual Redsys, Bizum y Stripe. Los fondos de las reservas se depositan directamente en la cuenta bancaria del hotel.
-                    </p>
-                </div>
-
-                <!-- Tarjeta 3 -->
-                <div class="premium-card p-8 space-y-4">
-                    <div class="w-12 h-12 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center text-xl border border-emerald-500/20">
-                        <i class="fa-solid fa-passport"></i>
-                    </div>
-                    <h3 class="text-lg font-bold text-white">Digital Check-in & Partes</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed">
-                        Proceso de registro previo desde el teléfono del huésped con generación automática de partes de viajeros cumpliendo la normativa española.
+                    <h3 class="font-serif-luxury font-bold text-xl text-slate-900">Sistema de cobros directos</h3>
+                    <p class="text-slate-600 text-xs leading-relaxed">
+                        Integración con TPV Redsys, Bizum y tarjeta. El dinero entra directo a tu banco sin intermediarios.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Formulario Comercial Ejecutivo -->
-    <section id="contacto" class="py-24 relative z-10">
+    <!-- Bloque de Contraste Azul Oscuro con Fotografía -->
+    <section class="bg-luxury-navy text-white py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80" alt="Suite Hotel" class="rounded-lg object-cover h-64 w-full shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80" alt="Lobby Hotel" class="rounded-lg object-cover h-64 w-full shadow-lg mt-8">
+                </div>
+
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-amber-300 font-semibold">Eficiencia Garantizada</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-luxury font-bold">Más orden para que tu equipo pueda enfocarse en recibir bien.</h2>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        Eliminamos el desorden operativo y la dependencia de plataformas terceras. Tu equipo ahorra horas administrativas y tus huéspedes disfrutan de una experiencia fluida desde antes de su llegada.
+                    </p>
+                    <ul class="space-y-3 text-xs text-slate-300 pt-2">
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Sincronización en tiempo real</span></li>
+                        <li class="flex items-center space-x-2"><i class="fa-solid fa-check text-amber-400"></i><span>Reducción de costos de comisión</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Propuesta de Valor Cuadrícula -->
+    <section id="propuesta" class="py-20 bg-luxury-sand">
+        <div class="max-w-7xl mx-auto px-6 space-y-12">
+            <div class="text-center max-w-2xl mx-auto space-y-2">
+                <h2 class="text-3xl font-serif-luxury font-bold text-slate-900">La propuesta de valor de M&D Solutions Technology</h2>
+                <p class="text-slate-600 text-sm">Soluciones pensadas para transformar tu canal directo de ventas.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-luxury-card p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-serif-luxury font-bold text-lg mb-2">Respuesta rápida e inmediata</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">Atención automatizada 24/7 sin hacer esperar al huésped interesado.</p>
+                </div>
+                <div class="bg-luxury-card p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-serif-luxury font-bold text-lg mb-2">Cobros directos en tu banco</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">Sin retenciones ni cobros de plataformas externas.</p>
+                </div>
+                <div class="bg-luxury-card p-6 rounded-lg border border-slate-200">
+                    <h4 class="font-serif-luxury font-bold text-lg mb-2">Check-in Digital & Partes</h4>
+                    <p class="text-slate-600 text-xs leading-relaxed">Cumplimiento normativo de partes de viajeros en España sin papeleo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario Integrado Final -->
+    <section id="contacto" class="bg-luxury-navy text-white py-20">
         <div class="max-w-3xl mx-auto px-6">
-            <div class="premium-card p-10 md:p-12 border-amber-500/30">
-                <div class="text-center space-y-3 mb-10">
-                    <span class="gold-badge">DEMOSTRACIÓN PRIVADA</span>
-                    <h2 class="text-3xl font-serif-title font-bold text-white">Solicita una propuesta para tu alojamiento</h2>
-                    <p class="text-slate-400 text-xs">Evaluamos tu canal directo actual y te mostramos el potencial de incremento de margen neto.</p>
-                </div>
-
-                <form onsubmit="alert('Solicitud enviada a la dirección ejecutiva. Nos pondremos en contacto a la brevedad.'); return false;" class="space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre y Apellidos *</label>
-                            <input type="text" required placeholder="Ej. Carlos Mendoza" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-xs">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Nombre del Hotel / Alojamiento *</label>
-                            <input type="text" required placeholder="Ej. Hotel Boutique Villa Real" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-xs">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Correo Corporativo *</label>
-                        <input type="email" required placeholder="direccion@tu-hotel.com" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 text-xs">
-                    </div>
-
-                    <button type="submit" class="w-full btn-gold py-4 rounded-xl text-xs uppercase tracking-wider shadow-xl">
-                        Solicitar Demostración y Diagnóstico →
-                    </button>
-                </form>
+            <div class="space-y-6 text-center mb-10">
+                <h2 class="text-3xl font-serif-luxury font-bold">Cuéntanos qué necesitas organizar</h2>
+                <p class="text-slate-300 text-xs">Evaluamos la situación actual de tu alojamiento y te presentamos una propuesta a medida.</p>
             </div>
+
+            <form onsubmit="alert('Consulta recibida por los fundadores. Nos pondremos en contacto.'); return false;" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <input type="text" required placeholder="Nombre y Apellidos *" class="w-full bg-slate-900 border border-slate-700 rounded px-4 py-3.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
+                    <input type="text" required placeholder="Nombre del Alojamiento *" class="w-full bg-slate-900 border border-slate-700 rounded px-4 py-3.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
+                </div>
+                <input type="email" required placeholder="Correo Corporativo *" class="w-full bg-slate-900 border border-slate-700 rounded px-4 py-3.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400">
+                <textarea rows="3" placeholder="¿Qué aspectos deseas optimizar en tu alojamiento?" class="w-full bg-slate-900 border border-slate-700 rounded px-4 py-3.5 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-amber-400"></textarea>
+                
+                <button type="submit" class="w-full btn-bronze py-4 rounded text-xs font-bold uppercase tracking-wider">
+                    Enviar Consulta y Agendar Reunión →
+                </button>
+            </form>
         </div>
     </section>
 
-    <!-- Footer Corporativo -->
-    <footer class="py-8 border-t border-slate-800/80 text-center text-xs text-slate-500">
-        <p>© 2026 M&D Solutions Technology. Todos los derechos reservados.</p>
-        <p class="mt-1 text-slate-600">María Elena Álvarez & Daniel Alberto Wolhein — Co-Fundadores.</p>
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-8 text-center text-xs">
+        <p>© 2026 M&D Solutions Technology. María Elena Álvarez & Daniel Alberto Wolhein — Co-Fundadores.</p>
     </footer>
 
 </body>
