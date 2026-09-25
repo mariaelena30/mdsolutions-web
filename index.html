@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&D Solutions Technology | IA & Automatización para Alojamientos en España</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030712;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        .font-mono-tech {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Matriz de fondo estilo Greptile */
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+
+        /* Tarjeta Estilo Tech / IA */
+        .tech-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .tech-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 0 25px rgba(245, 158, 11, 0.12);
+        }
+
+        .tech-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            background: rgba(245, 158, 11, 0.08);
+            color: #fbbf24;
+        }
+
+        .ai-pulse {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #030712; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f59e0b; }
+    </style>
+</head>
+<body class="bg-grid-pattern relative min-h-screen">
+
+    <!-- Header Corporativo Tech -->
+    <header class="sticky top-0 z-50 bg-[#030712]/90 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-md bg-amber-500 text-slate-950 flex items-center justify-center font-mono-tech font-extrabold text-sm shadow-md">
+                    M&D
+                </div>
+                <span class="font-mono-tech font-bold text-sm tracking-tight text-white">
+                    M&D_SOLUTIONS <span class="text-amber-400 font-normal">// HOTEL_AI</span>
+                </span>
+            </div>
+
+            <nav class="hidden md:flex space-x-8 text-xs font-mono-tech text-slate-400">
+                <a href="#ia-hoteles" class="hover:text-amber-400 transition-colors">[ 01. IA en Hospitalidad ]</a>
+                <a href="#flujo-sistema" class="hover:text-amber-400 transition-colors">[ 02. Beneficios ]</a>
+                <a href="#contacto" class="hover:text-amber-400 transition-colors">[ 03. Contacto ]</a>
+            </nav>
+
+            <div>
+                <a href="#contacto" class="font-mono-tech text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2 rounded-md transition-all shadow-md">
+                    SOLICITAR DEMO IA →
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section con Enfoque IA + Hoteles -->
+    <section class="pt-20 pb-16 relative z-10 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Columna Izquierda: Mensaje Comercial -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="tech-badge">
+                            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-1.5"></span>
+                            MOTOR DE IA v3.0 PARA ALOJAMIENTOS EN ESPAÑA
+                        </span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-mono-tech leading-tight tracking-tight text-white">
+                        Inteligencia Artificial para <span class="text-amber-400">multiplicar tus reservas directas</span>.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 leading-relaxed font-light">
+                        Transformamos la web de tu hotel, casa rural u hostal con asistentes de IA que atienden huéspedes 24/7, cotizan habitaciones al instante y procesan pagos por **Redsys / Bizum** sin pagar comisiones a Booking o Airbnb.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 font-mono-tech text-xs">
+                        <a href="#contacto" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-6 py-3.5 rounded-md text-center transition-all shadow-lg">
+                            PROBAR AGENTE DE IA EN VIVO
+                        </a>
+                        <a href="#ia-hoteles" class="border border-slate-700 hover:border-amber-400 text-slate-300 font-medium px-6 py-3.5 rounded-md text-center transition-all">
+                            VER CÓMO FUNCIONA
+                        </a>
+                    </div>
+
+                    <!-- Métricas Rápidas Estilo Terminal -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 font-mono-tech border-t border-slate-800/80 text-xs">
+                        <div class="p-3 bg-slate-900/80 rounded-md border border-slate-800">
+                            <span class="text-slate-500 block text-[10px] uppercase">Comisiones OTAs</span>
+                            <span class="text-amber-400 font-bold text-sm">0 % Directo</span>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-md border border-slate-800">
+                            <span class="text-slate-500 block text-[10px] uppercase">Respuesta IA</span>
+                            <span class="text-emerald-400 font-bold text-sm">&lt; 3 Segundos</span>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-md border border-slate-800">
+                            <span class="text-slate-500 block text-[10px] uppercase">Pasarela Pago</span>
+                            <span class="text-white font-bold text-sm">Redsys / Bizum</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Simulación de Chat de IA + Estado del Hotel -->
+                <div class="lg:col-span-5">
+                    <div class="tech-card p-6 border-amber-500/30 shadow-2xl relative font-mono-tech text-xs">
+                        
+                        <!-- Top Header de la Terminal -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                            </div>
+                            <span class="text-[10px] text-slate-400">// AGENTE_RESERVA_IA_ACTIVO</span>
+                        </div>
+
+                        <!-- Chat Simulado en Vivo -->
+                        <div class="my-6 space-y-3">
+                            <div class="bg-slate-900/90 p-3 rounded-lg border border-slate-800 text-slate-300">
+                                <span class="text-amber-400 text-[10px] block font-bold">Huésped (WhatsApp / Web):</span>
+                                "¿Tenéis habitación libre para este fin de semana en suite?"
+                            </div>
+
+                            <div class="bg-amber-500/10 p-3 rounded-lg border border-amber-500/30 text-amber-200 ai-pulse">
+                                <span class="text-emerald-400 text-[10px] block font-bold">IA Hotelero (M&D Bot):</span>
+                                "¡Hola! Sí, tenemos disponible la Suite Vistas con desayuno incluido por 140€/noche. Podés reservar ahora con Bizum o Tarjeta sin comisiones aquí: [Enlace de Cobro Redsys]"
+                            </div>
+                        </div>
+
+                        <!-- Panel de Estado Operativo -->
+                        <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px]">
+                            <span class="text-slate-400">Estado Recepción:</span>
+                            <span class="text-emerald-400 font-bold flex items-center space-x-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                                <span>Sincronizado 100%</span>
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Módulos de IA para la Hotelería -->
+    <section id="ia-hoteles" class="py-20 relative z-10 border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            
+            <div class="space-y-2">
+                <span class="font-mono-tech text-xs text-amber-400 uppercase tracking-widest">[ COMPONENTES DE INTELIGENCIA ARTIFICIAL ]</span>
+                <h2 class="text-2xl sm:text-4xl font-mono-tech font-bold text-white">Tecnología de nivel gran cadena para tu alojamiento</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Módulo 1 -->
+                <div class="tech-card p-6 space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center font-bold text-lg border border-amber-500/30">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <h3 class="font-mono-tech text-base font-bold text-white">Atención 24/7 en WhatsApp</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        El bot de IA responde dudas sobre horarios, parking, servicios y mascotas, cerrando reservas a cualquier hora del día o de la noche.
+                    </p>
+                </div>
+
+                <!-- Módulo 2 -->
+                <div class="tech-card p-6 space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-sky-500/10 text-sky-400 flex items-center justify-center font-bold text-lg border border-sky-500/30">
+                        <i class="fa-solid fa-credit-card"></i>
+                    </div>
+                    <h3 class="font-mono-tech text-base font-bold text-white">Cobro Directo Redsys / Bizum</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Procesamiento automático de pagos e integración directa con tu cuenta bancaria en España, garantizando cobros inmediatos.
+                    </p>
+                </div>
+
+                <!-- Módulo 3 -->
+                <div class="tech-card p-6 space-y-4">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold text-lg border border-emerald-500/30">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h3 class="font-mono-tech text-base font-bold text-white">Check-in Digital Automatizado</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        El huésped completa sus datos y DNI desde su móvil antes de llegar, generando automáticamente el parte de viajeros normativo en España.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Formulario de Contacto B2B -->
+    <section id="contacto" class="py-20 relative z-10">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="tech-card p-8 space-y-6">
+                <div class="space-y-2 text-center">
+                    <span class="font-mono-tech text-xs text-amber-400 uppercase tracking-widest">[ DEMOSTRACIÓN PERSONALIZADA ]</span>
+                    <h2 class="text-xl font-mono-tech font-bold text-white">Solicitar Diagnóstico de IA para tu Alojamiento</h2>
+                </div>
+
+                <form onsubmit="alert('Solicitud enviada a los socios fundadores. Nos pondremos en contacto a la brevedad.'); return false;" class="space-y-4 font-mono-tech text-xs">
+                    <div>
+                        <label class="block text-slate-400 mb-1">NOMBRE Y APELLIDOS *</label>
+                        <input type="text" required placeholder="Carlos Mendoza" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">NOMBRE DEL ALOJAMIENTO / HOTEL *</label>
+                        <input type="text" required placeholder="Hotel Rural Boutique" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">CORREO CORPORATIVO *</label>
+                        <input type="email" required placeholder="contacto@tu-hotel.com" class="w-full bg-slate-950 border border-slate-800 rounded px-3 py-2.5 text-white focus:outline-none focus:border-amber-400">
+                    </div>
+                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-3 rounded transition-all shadow-md">
+                        SOLICITAR DEMO DE IA →
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Corporativo Fundadores -->
+    <footer class="py-8 border-t border-slate-800 font-mono-tech text-[11px] text-slate-500 text-center">
+        <p>M&D Solutions Technology © 2026. María Elena Álvarez & Daniel Alberto Wolhein — Co-Fundadores.</p>
+    </footer>
+
+</body>
+</html>
