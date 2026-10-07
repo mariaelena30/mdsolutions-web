@@ -1,298 +1,117 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
+const NAV = [['inicio','Inicio'],['plataforma','Plataforma'],['modulos','Módulos'],['mapa-demos','Zonas piloto'],['compromiso','Compromiso']];
+const SLIDES = [
+  { label: 'Reservas', bg: 'rgb(22, 37, 42)', fg: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/5371683/pexels-photo-5371683.jpeg', alt: 'Recepción de hotel' },
+  { label: 'Habitaciones', bg: 'rgb(37, 37, 26)', fg: 'rgb(197, 243, 76)', img: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Habitación de hotel boutique' },
+  { label: 'Experiencias', bg: 'rgb(42, 33, 69)', fg: 'rgb(203, 183, 255)', img: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Resort en la costa' },
+  { label: 'Servicios', bg: 'rgb(42, 29, 28)', fg: 'rgb(255, 156, 141)', img: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Restaurante de hotel' },
+  { label: 'Bienestar', bg: 'rgb(22, 37, 42)', fg: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800', alt: 'Spa urbano' }
+];
+const MODULES = [
+  { id: 'm1', cat: 'recepcion', icon: '💻', title: 'Reservas y CRM', soon: false, text: 'La recepción se transforma en una vista clara de llegadas, estancias y conversaciones.', detail: 'Conecta consulta, reserva y bienvenida sin perder el contexto de cada estancia.', color: '#25d6e8' },
+  { id: 'm2', cat: 'housekeeping', icon: '🔌', title: 'Habitaciones y Gobernanta', soon: false, text: 'Estados de habitación, partes de limpieza y coordinación visual para el equipo.', detail: 'Recepción y gobernanta trabajan sobre la misma vista de habitaciones.', color: '#c5f34c' },
+  { id: 'm3', cat: 'facturacion', icon: '🧾', title: 'Facturación y TPV', soon: true, text: 'Consumos, TPV y facturas adaptadas a la normativa fiscal de España.', detail: 'Restaurante, bar, spa o tasa turística como parte de la estancia del huésped.', color: '#ff765e' },
+  { id: 'm4', cat: 'operaciones', icon: '📊', title: 'Analítica y RevPAR', soon: true, text: 'Ocupación, ADR, RevPAR y ritmo de reservas por canal.', detail: 'Señales para decidir precios y disponibilidad con datos de tu propio hotel.', color: '#9a6cff' }
+];
+const ZONES = [
+  { id: 'esp1', nombre: 'Madrid', tipo: 'hoteles', ciudad: 'Madrid (Centro)', foco: 'Hoteles urbanos', pinColor: '#25d6e8', x: '48%', y: '45%', texto: 'Buscamos hoteles urbanos de 10 a 50 habitaciones para probar reservas, recepción y partes de viajeros.' },
+  { id: 'esp2', nombre: 'Costa del Sol', tipo: 'resorts', ciudad: 'Málaga', foco: 'Resorts y hoteles de costa', pinColor: '#c5f34c', x: '40%', y: '82%', texto: 'Buscamos alojamientos de costa con alta rotación de habitaciones para probar el módulo de Gobernanta.' },
+  { id: 'esp3', nombre: 'Baleares', tipo: 'cabanas', ciudad: 'Islas Baleares', foco: 'Casas rurales y villas', pinColor: '#ff765e', x: '78%', y: '58%', texto: 'Buscamos casas rurales y villas que quieran simplificar el check-in y el registro de huéspedes.' }
+];
+const FAQS = [
+  ['¿Está pensada para alojamientos en España?', 'Sí. Diseñamos el producto para hoteles, casas rurales y apartamentos turísticos de España, incluido el registro de viajeros y el RGPD. Lo validamos con hoteles piloto.'],
+  ['¿Qué áreas conecta la plataforma?', 'Hoy trabajamos en reservas, recepción y gobernanta. Facturación, TPV y analítica de RevPAR llegan después.'],
+  ['¿Qué significa SaaS?', 'Software que usas desde el navegador y pagas con suscripción mensual. No instalas nada y las mejoras llegan solas.'],
+  ['¿Cómo funciona el piloto?', 'Analizamos cómo gestionas hoy tu alojamiento, configuramos el panel y lo usas en tu hotel. Ajustamos contigo antes de que contrates.']
+];
+const PLEDGES = [
+  ['🔒', 'Tus datos, bajo RGPD', 'Los datos de reservas y huéspedes se tratan conforme al RGPD, con contrato de encargado de tratamiento.', '#25d6e8'],
+  ['🛠️', 'Soporte directo', 'Atención por teléfono y correo con el equipo que desarrolla el producto.', '#c5f34c'],
+  ['⚡', 'WhatsApp para check-in', 'En desarrollo: envío de datos de check-in y confirmaciones al móvil del huésped.', '#ff765e'],
+  ['📈', 'Crece contigo', 'Pensado para empezar con una casa rural o boutique y llegar a varias propiedades.', '#9a6cff']
+];
+const card = 'bg-[#181e27] border border-[#34404e] rounded-xl';
+const field = 'w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]';
+const eyebrow = 'text-xs font-bold uppercase tracking-widest';
+
 export default function Home() {
-  // 1. Navegación y Menú Móvil
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // 2. Simulador de Habitaciones en el Hero
-  const [roomCount, setRoomCount] = useState('11-50');
-
-  // 3. Filtro por Pestañas de Módulos ERP
-  const [moduleFilter, setModuleFilter] = useState('todos');
-
-  // 4. Estados de Acordeones (Módulos y FAQ)
-  const [openModules, setOpenModules] = useState({});
+  const [menu, setMenu] = useState(false);
+  const [rooms, setRooms] = useState('11-50');
+  const [modFilter, setModFilter] = useState('todos');
+  const [openMods, setOpenMods] = useState({});
   const [openFaqs, setOpenFaqs] = useState({});
-
-  // 5. Carrusel de Imágenes
-  const [galleryIndex, setGalleryIndex] = useState(0);
-  const [isAutoplay, setIsAutoplay] = useState(true);
-
-  // 6. Mapa Dinámico de Demos y Reseñas (Nodos en España)
-  const [selectedLocation, setSelectedLocation] = useState('esp1');
-  const [mapCategoryFilter, setMapCategoryFilter] = useState('todos');
-  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-  const [newReview, setNewReview] = useState({
-    nombre: '',
-    alojamiento: '',
-    estrellas: 5,
-    comentario: ''
-  });
-  const [reviewsList, setReviewsList] = useState([]);
-  const [reviewSuccessMsg, setReviewSuccessMsg] = useState('');
-
-  
-
-  // 8. Formulario de Contacto
-  const [formData, setFormData] = useState({
-    nombre: '',
-    alojamiento: '',
-    email: '',
-    telefono: '',
-    tipo_negocio: '',
-    mensaje: ''
-  });
+  const [gi, setGi] = useState(0);
+  const [auto, setAuto] = useState(true);
+  const [sel, setSel] = useState('esp1');
+  const [mapFilter, setMapFilter] = useState('todos');
+  const empty = { nombre: '', alojamiento: '', email: '', telefono: '', tipo_negocio: '', mensaje: '', website: '' };
+  const [form, setForm] = useState(empty);
   const [status, setStatus] = useState({ loading: false, success: null, error: null });
 
-  // Galería de Imágenes del Carrusel
-  const gallerySlides = [
-    { id: 1, label: 'Reservas', tagBg: 'rgb(22, 37, 42)', tagColor: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/5371683/pexels-photo-5371683.jpeg', alt: 'Recepción de hotel en Madrid' },
-    { id: 2, label: 'Habitaciones', tagBg: 'rgb(37, 37, 26)', tagColor: 'rgb(197, 243, 76)', img: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Habitación de hotel boutique' },
-    { id: 3, label: 'Experiencias', tagBg: 'rgb(42, 33, 69)', tagColor: 'rgb(203, 183, 255)', img: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Resort en Ibiza' },
-    { id: 4, label: 'Servicios', tagBg: 'rgb(42, 29, 28)', tagColor: 'rgb(255, 156, 141)', img: 'https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Restaurante de hotel' },
-    { id: 5, label: 'Bienestar', tagBg: 'rgb(22, 37, 42)', tagColor: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/3188/love-romantic-bath-candlelight.jpg?auto=compress&cs=tinysrgb&w=800', alt: 'Spa urbano' }
-  ];
-
-  // Datos de Módulos ERP
-  const modulesData = [
-    { id: 'm1', category: 'recepcion', icon: '💻', title: 'Reservas y CRM', text: 'La recepción se transforma en una vista clara de llegadas, estancias y conversaciones.', detail: 'Conecta el recorrido de consulta, reserva y bienvenida sin perder el contexto de cada estancia.', color: '#25d6e8' },
-    { id: 'm2', category: 'housekeeping', icon: '🔌', title: 'Habitaciones y Gobernanta', text: 'Estados de habitación, partes de limpieza y coordinación visual para el equipo.', detail: 'Una lectura compartida para que recepción y gobernanta trabajen sobre la misma escena operativa.', color: '#c5f34c' },
-    { id: 'm3', category: 'facturacion', icon: '🧾', title: 'Facturación e Impuestos', text: 'Gestión de TPV, consumos y emisión de facturas según normativa fiscal de España.', detail: 'Restaurante, bar, spa o tasa turística aparecen como parte natural de la estancia del huésped.', color: '#ff765e' },
-    { id: 'm4', category: 'operaciones', icon: '📊', title: 'Analítica y RevPAR', text: 'Lectura en tiempo real de ocupación, ADR, RevPAR y ritmo de reservas por canal.', detail: 'Organiza señales operativas para decidir precios y disponibilidad con contexto de mercado.', color: '#9a6cff' }
-  ];
-
-  // Ubicaciones de Ejemplo para España en el Mapa Dinámico
-  const locationsData = [
-    {
-      id: 'esp1',
-      nombre: 'Gran Hotel Castellana',
-      tipo: 'hoteles',
-      ciudad: 'Madrid (Centro)',
-      ocupacion: '92%',
-      estado: 'Sincronización OTA Activa',
-      autorResena: 'Javier S. (Director de Operaciones)',
-      estrellas: 5,
-      resena: 'Centralizar las reservas directas con el motor del ERP y automatizar los partes de viajeros nos ahorró más de 20 horas de trabajo semanal en recepción.',
-      pinColor: '#25d6e8',
-      x: '48%',
-      y: '45%'
-    },
-    {
-      id: 'esp2',
-      nombre: 'Resort & Spa Costa del Sol',
-      tipo: 'resorts',
-      ciudad: 'Marbella, Málaga',
-      ocupacion: '96%',
-      estado: 'Gobernanta y TPV Conectados',
-      autorResena: 'Carmen P. (Directora de Hotel)',
-      estrellas: 5,
-      resena: 'La respuesta de soporte en menos de 5 minutos ante cualquier incidencia técnica es clave en temporada alta. M&D nos da la seguridad operativa que necesitamos.',
-      pinColor: '#c5f34c',
-      x: '40%',
-      y: '82%'
-    },
-    {
-      id: 'esp3',
-      nombre: 'Villas & Cabañas Balears',
-      tipo: 'cabanas',
-      ciudad: 'Ibiza, Islas Baleares',
-      ocupacion: '89%',
-      estado: 'Partes y Check-in Digital Activo',
-      autorResena: 'Marc B. (Propietario)',
-      estrellas: 5,
-      resena: 'El check-in express con envío de instrucciones por WhatsApp disminuyó las colas en la entrada. Los huéspedes lo valoran muchísimo.',
-      pinColor: '#ff765e',
-      x: '78%',
-      y: '58%'
-    }
-  ];
-
-  // Reseñas Iniciales
   useEffect(() => {
-    setReviewsList([
-      {
-        id: 1,
-        nombre: 'Javier S. (Director de Operaciones)',
-        alojamiento: 'Gran Hotel Castellana (Madrid)',
-        estrellas: 5,
-        comentario: 'Un sistema ágil y perfectamente adecuado a la normativa en España. El trato con Daniel y María Elena es excelente.'
-      },
-      {
-        id: 2,
-        nombre: 'Carmen P. (Directora)',
-        alojamiento: 'Resort & Spa Costa del Sol (Marbella)',
-        estrellas: 5,
-        comentario: 'Servicio de soporte técnico impecable las 24 horas del día.'
-      }
-    ]);
-  }, []);
+    if (!auto) return;
+    const t = setInterval(() => setGi((p) => (p + 1) % SLIDES.length), 5000);
+    return () => clearInterval(t);
+  }, [auto]);
 
-  // Autoplay para el carrusel
-  useEffect(() => {
-    if (!isAutoplay) return;
-    const interval = setInterval(() => {
-      setGalleryIndex((prev) => (prev + 1) % gallerySlides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [isAutoplay, gallerySlides.length]);
-
-  // Handlers para acordeones
-  const toggleModule = (id) => {
-    setOpenModules((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  const toggleFaq = (id) => {
-    setOpenFaqs((prev) => ({ ...prev, [id]: !prev[id] }));
-  };
-
-  // Handler de formulario de contacto
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const onSubmit = async (e) => {
     e.preventDefault();
     setStatus({ loading: true, success: null, error: null });
-
     try {
-      const res = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
-
-      if (res.ok) {
-        setStatus({ loading: false, success: 'Gracias. Tu solicitud se ha enviado correctamente.', error: null });
-        setFormData({ nombre: '', alojamiento: '', email: '', telefono: '', tipo_negocio: '', mensaje: '' });
-      } else {
-        setStatus({ loading: false, success: null, error: 'No pudimos confirmar el envío. Inténtalo nuevamente.' });
-      }
-    } catch (err) {
-      setStatus({ loading: false, success: null, error: 'Error al procesar la solicitud.' });
-    }
+      const res = await fetch('/api/contacts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
+      if (res.ok) { setStatus({ loading: false, success: 'Gracias. Tu solicitud se ha enviado correctamente.', error: null }); setForm(empty); }
+      else setStatus({ loading: false, success: null, error: 'No pudimos confirmar el envío. Inténtalo de nuevo.' });
+    } catch { setStatus({ loading: false, success: null, error: 'Error al procesar la solicitud.' }); }
   };
 
-  // Handler para agregar reseña
-  const handleAddReview = (e) => {
-    e.preventDefault();
-    if (!newReview.nombre || !newReview.comentario) return;
-
-    const reviewObject = {
-      id: Date.now(),
-      nombre: newReview.nombre,
-      alojamiento: newReview.alojamiento || 'Establecimiento en España',
-      estrellas: Number(newReview.estrellas),
-      comentario: newReview.comentario
-    };
-
-    setReviewsList([reviewObject, ...reviewsList]);
-    setReviewSuccessMsg('¡Muchas gracias por tu reseña! Ha sido añadida a la plataforma.');
-    setTimeout(() => {
-      setIsReviewModalOpen(false);
-      setReviewSuccessMsg('');
-      setNewReview({ nombre: '', alojamiento: '', estrellas: 5, comentario: '' });
-    }, 1800);
-  };
-
-  const filteredModules = moduleFilter === 'todos' 
-    ? modulesData 
-    : modulesData.filter(m => m.category === moduleFilter);
-
-  const filteredLocations = mapCategoryFilter === 'todos'
-    ? locationsData
-    : locationsData.filter(loc => loc.tipo === mapCategoryFilter);
-
-  const activeLocation = locationsData.find(loc => loc.id === selectedLocation) || locationsData[0];
+  const mods = modFilter === 'todos' ? MODULES : MODULES.filter((m) => m.cat === modFilter);
+  const zones = mapFilter === 'todos' ? ZONES : ZONES.filter((z) => z.tipo === mapFilter);
+  const zone = ZONES.find((z) => z.id === sel) || ZONES[0];
+  const plan = rooms === '1-10' ? 'Básico' : rooms === '11-50' ? 'Pro' : 'Multipropiedad';
 
   return (
     <div className="w-full overflow-x-hidden bg-[#0a0c10] text-[#f6f8fb] font-sans selection:bg-[#25d6e8] selection:text-[#071014]">
       <Head>
-        <title>M&D Solutions Technology | Gestión ERP para Hoteles en España</title>
+        <title>M&D Solutions Technology | SaaS para hotelería en España</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Software en la nube para hoteles, casas rurales y apartamentos turísticos en España. Acceso anticipado." />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Work+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
       </Head>
 
-      {/* Línea animada superior */}
       <div className="h-1 w-full bg-gradient-to-r from-[#25d6e8] via-[#9a6cff] via-[#ff765e] to-[#c5f34c] bg-[length:200%_100%] animate-pulse"></div>
 
-      {/* Header */}
       <header className="sticky top-0 z-50 border-b border-[#34404e] bg-[#0a0c10]/95 backdrop-blur-md">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
-          <a href="#inicio" className="rounded focus:outline-none focus:ring-2 focus:ring-[#c5f34c]">
-            <span className="font-extrabold text-[#f6f8fb] hover:text-[#25d6e8] transition-colors">
-              M&D Solutions Technology
-            </span>
-          </a>
-
+          <a href="#inicio" className="font-extrabold hover:text-[#25d6e8] transition-colors">M&D Solutions Technology</a>
           <div className="hidden items-center gap-6 md:flex text-sm font-semibold text-slate-300">
-            <a href="#inicio" className="hover:text-[#25d6e8] transition-colors">Inicio</a>
-            <a href="#plataforma" className="hover:text-[#25d6e8] transition-colors">Plataforma</a>
-            <a href="#modulos" className="hover:text-[#25d6e8] transition-colors">Módulos</a>
-            <a href="#mapa-demos" className="hover:text-[#25d6e8] transition-colors">Red & Opiniones</a>
-            <a href="#compromiso" className="hover:text-[#25d6e8] transition-colors">Garantía</a>
+            {NAV.map(([id, l]) => <a key={id} href={'#' + id} className="hover:text-[#25d6e8] transition-colors">{l}</a>)}
           </div>
-
           <div className="flex items-center gap-3">
-            <a
-              href="#contacto"
-              className="hidden sm:block rounded-full bg-[#25d6e8] px-4 py-2 text-sm font-bold text-[#071014] hover:bg-[#1fbecf] transition-all"
-            >
-              Solicitar diagnóstico
-            </a>
-
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              type="button"
-              className="p-2 md:hidden text-white text-xl"
-            >
-              ☰
-            </button>
+            <a href="#contacto" className="hidden sm:block rounded-full bg-[#25d6e8] px-4 py-2 text-sm font-bold text-[#071014] hover:bg-[#1fbecf] transition-all">Solicitar acceso anticipado</a>
+            <button onClick={() => setMenu(!menu)} type="button" aria-label="Abrir menú" className="p-2 md:hidden text-white text-xl">☰</button>
           </div>
         </nav>
-
-        {mobileMenuOpen && (
+        {menu && (
           <div className="border-t border-[#34404e] bg-[#12161d] px-5 py-5 md:hidden flex flex-col gap-4 text-sm font-semibold">
-            <a href="#inicio" onClick={() => setMobileMenuOpen(false)}>Inicio</a>
-            <a href="#plataforma" onClick={() => setMobileMenuOpen(false)}>Plataforma</a>
-            <a href="#modulos" onClick={() => setMobileMenuOpen(false)}>Módulos</a>
-            <a href="#mapa-demos" onClick={() => setMobileMenuOpen(false)}>Red & Opiniones</a>
-            <a href="#compromiso" onClick={() => setMobileMenuOpen(false)}>Garantía</a>
-            <a href="#contacto" onClick={() => setMobileMenuOpen(false)}>Contacto</a>
+            {[...NAV, ['contacto', 'Contacto']].map(([id, l]) => <a key={id} href={'#' + id} onClick={() => setMenu(false)}>{l}</a>)}
           </div>
         )}
       </header>
 
       <main>
-        {/* Hero Section + Simulador */}
         <section id="inicio" className="relative isolate overflow-hidden border-b border-[#34404e] py-12">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[.92fr_1.08fr] lg:px-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#25d6e8]">
-                SOFTWARE ERP HOTELERO · ESPAÑA
-              </p>
-              <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight sm:text-6xl text-[#f6f8fb]">
-                La gestión de tu hotel en España, en una sola escena.
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-7 text-[#c7d0da]">
-                Una plataforma ERP moderna concebida para hoteles, resorts, casas rurales y alojamientos turísticos que buscan agilizar la operativa diaria.
-              </p>
-
+              <p className={eyebrow + ' text-[#25d6e8]'}>SaaS PARA HOTELERÍA · ESPAÑA</p>
+              <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight sm:text-6xl">El SaaS para hoteles de España, aquí reunimos tu gestión en una sola escena.</h1>
+              <p className="mt-6 max-w-xl text-lg leading-7 text-[#c7d0da]">Software en la nube para hoteles, casas rurales y alojamientos turísticos. Se usa desde el navegador, con suscripción mensual y sin instalar nada.</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#contacto"
-                  className="rounded-full bg-[#ff765e] px-6 py-3 text-center font-bold text-[#17100e] hover:opacity-90 transition-opacity"
-                >
-                  Solicitar diagnóstico sin compromiso
-                </a>
-                <a
-                  href="#modulos"
-                  className="rounded-full border border-[#51606e] bg-[#181e27] px-6 py-3 text-center font-bold text-[#f6f8fb] hover:bg-[#202834] transition-colors"
-                >
-                  Explorar módulos
-                </a>
+                <a href="#contacto" className="rounded-full bg-[#ff765e] px-6 py-3 text-center font-bold text-[#17100e] hover:opacity-90 transition-opacity">Solicitar acceso anticipado</a>
+                <a href="#modulos" className="rounded-full border border-[#51606e] bg-[#181e27] px-6 py-3 text-center font-bold hover:bg-[#202834] transition-colors">Explorar módulos</a>
               </div>
-
               <div className="mt-9 flex flex-wrap gap-2">
                 <span className="rounded-full border border-[#25d6e8]/30 bg-[#16252a] px-3 py-2 text-sm font-bold text-[#25d6e8]">Reservas Directas</span>
                 <span className="rounded-full border border-[#c5f34c]/30 bg-[#25251a] px-3 py-2 text-sm font-bold text-[#c5f34c]">Gobernanta</span>
@@ -300,566 +119,198 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Simulador Interactivo */}
-            <div className="relative bg-[#181e27] border border-[#34404e] rounded-2xl p-6 flex flex-col justify-between shadow-2xl">
-              <div>
-                <div className="flex items-center justify-between border-b border-[#34404e] pb-4">
-                  <span className="font-bold text-white text-base">Simulador de Capacidad</span>
-                  <span className="h-3 w-3 rounded-full bg-[#c5f34c] shadow-[0_0_12px_#c5f34c]"></span>
-                </div>
-
-                <p className="mt-4 text-xs font-semibold text-[#a9b5c3] uppercase tracking-wider">
-                  ¿Cuántas habitaciones o plazas gestionas?
-                </p>
-                <div className="mt-2 grid grid-cols-3 gap-2">
-                  {['1-10', '11-50', '50+'].map((range) => (
-                    <button
-                      key={range}
-                      onClick={() => setRoomCount(range)}
-                      className={`py-2 text-xs font-bold rounded-lg border transition-all ${
-                        roomCount === range
-                          ? 'bg-[#25d6e8] text-[#071014] border-[#25d6e8]'
-                          : 'bg-[#0e131a] text-slate-300 border-[#34404e] hover:border-[#25d6e8]'
-                      }`}
-                    >
-                      {range} habs.
-                    </button>
-                  ))}
-                </div>
-
-                <div className="mt-6 border-t border-[#34404e] pt-4">
-                  <p className="text-xs font-bold text-[#25d6e8] uppercase">Configuración recomendada:</p>
-                  <ul className="mt-2 space-y-1 text-sm text-[#f6f8fb]">
-                    <li className="flex items-center gap-2">✔ Recepción y fichas de viajeros</li>
-                    <li className="flex items-center gap-2">✔ Gobernanta y estado de habitaciones</li>
-                    {roomCount !== '1-10' && <li className="flex items-center gap-2 text-[#c5f34c]">✔ Módulo de TPV y facturación unificada</li>}
-                    {roomCount === '50+' && <li className="flex items-center gap-2 text-[#9a6cff]">✔ Revenue Management & RevPAR</li>}
-                  </ul>
-                </div>
+            <div className="relative bg-[#181e27] border border-[#34404e] rounded-2xl p-6 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-[#34404e] pb-4">
+                <span className="font-bold text-white">Simulador de plan</span>
+                <span className="h-3 w-3 rounded-full bg-[#c5f34c] shadow-[0_0_12px_#c5f34c]"></span>
               </div>
-
+              <p className="mt-4 text-xs font-semibold text-[#a9b5c3] uppercase tracking-wider">¿Cuántas habitaciones o plazas gestionas?</p>
+              <div className="mt-2 grid grid-cols-3 gap-2">
+                {['1-10', '11-50', '50+'].map((r) => (
+                  <button key={r} onClick={() => setRooms(r)} className={`py-2 text-xs font-bold rounded-lg border transition-all ${rooms === r ? 'bg-[#25d6e8] text-[#071014] border-[#25d6e8]' : 'bg-[#0e131a] text-slate-300 border-[#34404e] hover:border-[#25d6e8]'}`}>{r} habs.</button>
+                ))}
+              </div>
+              <div className="mt-6 border-t border-[#34404e] pt-4">
+                <p className="text-xs font-bold text-[#25d6e8] uppercase">Configuración recomendada:</p>
+                <ul className="mt-2 space-y-1 text-sm">
+                  <li>✔ Recepción y fichas de viajeros</li>
+                  <li>✔ Gobernanta y estado de habitaciones</li>
+                  {rooms !== '1-10' && <li className="text-[#c5f34c]">✔ Facturación y TPV (próximamente)</li>}
+                  {rooms === '50+' && <li className="text-[#9a6cff]">✔ Analítica y RevPAR (próximamente)</li>}
+                </ul>
+              </div>
               <div className="mt-6 border border-[#34404e] bg-[#0e131a] p-3 rounded-lg text-xs flex justify-between items-center">
-                <span className="text-[#a9b5c3]">Ahorro de tiempo estimado:</span>
-                <span className="font-bold text-[#c5f34c]">
-                  {roomCount === '1-10' ? '~8 hs / semana' : roomCount === '11-50' ? '~18 hs / semana' : '~35 hs / semana'}
-                </span>
+                <span className="text-[#a9b5c3]">Plan sugerido:</span>
+                <span className="font-bold text-[#c5f34c]">{plan} · precio a consultar</span>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Galería Carrusel Dinámica */}
-        <section id="plataforma" className="border-b border-[#34404e] bg-[#0a0c10] py-14">
+        <section id="plataforma" className="border-b border-[#34404e] py-14">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-5 mb-6">
               <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#25d6e8]">EL HOTEL EN MOVIMIENTO</p>
-                <h2 className="mt-2 text-3xl font-extrabold text-[#f6f8fb]">Cada módulo adaptado a la hospitalidad en España.</h2>
+                <p className={eyebrow + ' text-[#25d6e8]'}>EL HOTEL EN MOVIMIENTO</p>
+                <h2 className="mt-2 text-3xl font-extrabold">Cada módulo pensado para la hospitalidad en España.</h2>
               </div>
               <div className="flex gap-2">
-                <button
-                  onClick={() => setGalleryIndex((prev) => (prev - 1 + gallerySlides.length) % gallerySlides.length)}
-                  className="rounded-full border border-[#475565] p-3 text-white hover:bg-[#181e27]"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={() => setIsAutoplay(!isAutoplay)}
-                  className="rounded-full border border-[#475565] p-3 text-white hover:bg-[#181e27]"
-                >
-                  {isAutoplay ? '⏸' : '▶'}
-                </button>
-                <button
-                  onClick={() => setGalleryIndex((prev) => (prev + 1) % gallerySlides.length)}
-                  className="rounded-full border border-[#475565] p-3 text-white hover:bg-[#181e27]"
-                >
-                  →
-                </button>
+                {[['←', () => setGi((p) => (p - 1 + SLIDES.length) % SLIDES.length), 'Anterior'], [auto ? '⏸' : '▶', () => setAuto(!auto), 'Pausar o reanudar'], ['→', () => setGi((p) => (p + 1) % SLIDES.length), 'Siguiente']].map(([s, f, a]) => (
+                  <button key={a} onClick={f} aria-label={a} className="rounded-full border border-[#475565] p-3 text-white hover:bg-[#181e27]">{s}</button>
+                ))}
               </div>
             </div>
-
-            <div className="relative overflow-hidden border border-[#40505f] bg-[#181e27] rounded-xl h-72 sm:h-96">
-              <img
-                src={gallerySlides[galleryIndex].img}
-                alt={gallerySlides[galleryIndex].alt}
-                className="w-full h-full object-cover transition-all duration-500"
-              />
-              <span
-                className="absolute top-4 left-4 px-3 py-1 rounded text-sm font-bold shadow-md"
-                style={{ backgroundColor: gallerySlides[galleryIndex].tagBg, color: gallerySlides[galleryIndex].tagColor }}
-              >
-                {gallerySlides[galleryIndex].label}
-              </span>
+            <div className={'relative overflow-hidden h-72 sm:h-96 ' + card}>
+              <img src={SLIDES[gi].img} alt={SLIDES[gi].alt} className="w-full h-full object-cover transition-all duration-500" />
+              <span className="absolute top-4 left-4 px-3 py-1 rounded text-sm font-bold shadow-md" style={{ backgroundColor: SLIDES[gi].bg, color: SLIDES[gi].fg }}>{SLIDES[gi].label}</span>
             </div>
-
             <div className="mt-4 flex gap-2 justify-center">
-              {gallerySlides.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setGalleryIndex(idx)}
-                  className={`h-2 rounded-full transition-all ${idx === galleryIndex ? 'w-8 bg-[#25d6e8]' : 'w-2 bg-[#56616f]'}`}
-                ></button>
-              ))}
+              {SLIDES.map((_, i) => <button key={i} aria-label={'Imagen ' + (i + 1)} onClick={() => setGi(i)} className={`h-2 rounded-full transition-all ${i === gi ? 'w-8 bg-[#25d6e8]' : 'w-2 bg-[#56616f]'}`}></button>)}
             </div>
           </div>
         </section>
 
-        {/* Módulos ERP con Filtro */}
         <section id="modulos" className="bg-[#12161d] py-16">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#ff9c8d]">MÓDULOS ERP</p>
-            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl text-[#f6f8fb]">Tecnología hotelera integral para tu negocio.</h2>
-
+            <p className={eyebrow + ' text-[#ff9c8d]'}>MÓDULOS</p>
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Empezamos por lo que más tiempo consume en recepción.</h2>
             <div className="mt-6 flex flex-wrap gap-2">
-              {[
-                { key: 'todos', label: 'Todos' },
-                { key: 'recepcion', label: 'Recepción' },
-                { key: 'housekeeping', label: 'Gobernanta' },
-                { key: 'facturacion', label: 'Facturación / TPV' },
-                { key: 'operaciones', label: 'RevPAR & Análisis' }
-              ].map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setModuleFilter(tab.key)}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${
-                    moduleFilter === tab.key
-                      ? 'bg-[#25d6e8] text-[#071014]'
-                      : 'bg-[#181e27] text-slate-300 border border-[#34404e] hover:border-[#25d6e8]'
-                  }`}
-                >
-                  {tab.label}
-                </button>
+              {[['todos', 'Todos'], ['recepcion', 'Recepción'], ['housekeeping', 'Gobernanta'], ['facturacion', 'Facturación / TPV'], ['operaciones', 'RevPAR & Análisis']].map(([k, l]) => (
+                <button key={k} onClick={() => setModFilter(k)} className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${modFilter === k ? 'bg-[#25d6e8] text-[#071014]' : 'bg-[#181e27] text-slate-300 border border-[#34404e] hover:border-[#25d6e8]'}`}>{l}</button>
               ))}
             </div>
-
             <div className="mt-8 grid gap-4 lg:grid-cols-2">
-              {filteredModules.map((m) => (
-                <article key={m.id} className="border border-[#34404e] bg-[#181e27] p-6 rounded-xl">
+              {mods.map((m) => (
+                <article key={m.id} className={card + ' p-6'}>
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
                       <span className="text-2xl">{m.icon}</span>
                       <h3 className="text-xl font-bold text-white">{m.title}</h3>
+                      <span className="rounded-full border px-2 py-0.5 text-[11px] font-bold" style={{ color: m.color, borderColor: m.color }}>{m.soon ? 'Próximamente' : 'En desarrollo'}</span>
                     </div>
-                    <button
-                      onClick={() => toggleModule(m.id)}
-                      className="text-2xl font-bold transition-transform"
-                      style={{ color: m.color }}
-                    >
-                      {openModules[m.id] ? '−' : '+'}
-                    </button>
+                    <button onClick={() => setOpenMods({ ...openMods, [m.id]: !openMods[m.id] })} aria-label="Ver detalle" className="text-2xl font-bold" style={{ color: m.color }}>{openMods[m.id] ? '−' : '+'}</button>
                   </div>
                   <p className="mt-2 text-sm text-[#a9b5c3]">{m.text}</p>
-                  {openModules[m.id] && (
-                    <p className="mt-4 pt-4 border-t border-[#34404e] text-sm text-[#c7d0da]">{m.detail}</p>
-                  )}
+                  {openMods[m.id] && <p className="mt-4 pt-4 border-t border-[#34404e] text-sm text-[#c7d0da]">{m.detail}</p>}
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Mapa Dinámico de Demos en España */}
-        <section id="mapa-demos" className="bg-[#0a0c10] py-16 border-t border-[#34404e]">
+        <section id="mapa-demos" className="py-16 border-t border-[#34404e]">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#25d6e8]">
-                  COBERTURA Y CASOS DE ÉXITO EN ESPAÑA
-                </p>
-                <h2 className="mt-2 text-3xl font-extrabold text-white">
-                  Mapa interactivo de establecimientos y opiniones.
-                </h2>
-                <p className="text-sm text-[#a9b5c3] mt-1">
-                  Haz clic en los puntos del mapa para consultar la demo operativa y las valoraciones de directores en España.
-                </p>
-              </div>
+            <p className={eyebrow + ' text-[#25d6e8]'}>HOTELES PILOTO EN ESPAÑA</p>
+            <h2 className="mt-2 text-3xl font-extrabold">Mapa interactivo de zonas piloto.</h2>
+            <p className="text-sm text-[#a9b5c3] mt-1 mb-8">Toca un punto del mapa para ver qué tipo de alojamiento buscamos en esa zona.</p>
 
-              <button
-                onClick={() => setIsReviewModalOpen(true)}
-                className="self-start md:self-auto rounded-full bg-[#c5f34c] px-5 py-2.5 text-xs font-bold text-[#071014] hover:bg-[#b0dc3d] transition-all"
-              >
-                ✍️️ Dejar una valoración
-              </button>
-            </div>
-
-            {/* Filtros del Mapa */}
             <div className="flex flex-wrap gap-2 mb-6">
-              {[
-                { key: 'todos', label: '🌐 Todos en España' },
-                { key: 'hoteles', label: '🏨 Hoteles Urbanos' },
-                { key: 'cabanas', label: '🏡 Casas Rurales' },
-                { key: 'resorts', label: '🌴 Resorts de Costa' }
-              ].map((f) => (
-                <button
-                  key={f.key}
-                  onClick={() => setMapCategoryFilter(f.key)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${
-                    mapCategoryFilter === f.key
-                      ? 'bg-[#181e27] text-[#25d6e8] border-[#25d6e8]'
-                      : 'bg-[#0e131a] text-[#a9b5c3] border-[#34404e] hover:border-[#25d6e8]'
-                  }`}
-                >
-                  {f.label}
-                </button>
+              {[['todos', '🌐 Todos en España'], ['hoteles', '🏨 Hoteles Urbanos'], ['cabanas', '🏡 Casas Rurales'], ['resorts', '🌴 Resorts de Costa']].map(([k, l]) => (
+                <button key={k} onClick={() => setMapFilter(k)} className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-all ${mapFilter === k ? 'bg-[#181e27] text-[#25d6e8] border-[#25d6e8]' : 'bg-[#0e131a] text-[#a9b5c3] border-[#34404e] hover:border-[#25d6e8]'}`}>{l}</button>
               ))}
             </div>
 
-            {/* Grilla Principal del Mapa + Ficha de Demo */}
             <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-              {/* Pantalla del Mapa Oscuro Vectorial */}
               <div className="relative min-h-[340px] bg-[#0e131a] border border-[#34404e] rounded-2xl p-6 overflow-hidden flex flex-col justify-between shadow-2xl">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-
                 <div className="relative z-10 flex items-center justify-between border-b border-[#34404e]/80 pb-3">
-                  <span className="text-xs font-mono font-bold text-[#a9b5c3] tracking-wider uppercase">
-                    RED DE CONTROL PENINSULAR E INSULAR
-                  </span>
-                  <span className="flex items-center gap-2 text-xs font-bold text-[#25d6e8]">
-                    <span className="h-2 w-2 rounded-full bg-[#25d6e8] animate-ping"></span>
-                    Sincronización activa
-                  </span>
+                  <span className="text-xs font-mono font-bold text-[#a9b5c3] tracking-wider uppercase">ZONAS PENINSULARES E INSULARES</span>
+                  <span className="flex items-center gap-2 text-xs font-bold text-[#25d6e8]"><span className="h-2 w-2 rounded-full bg-[#25d6e8] animate-ping"></span>Piloto abierto</span>
                 </div>
-
-                {/* Marcadores sobre el Mapa */}
                 <div className="relative z-10 my-12 min-h-[200px] w-full">
-                  {filteredLocations.map((loc) => (
-                    <button
-                      key={loc.id}
-                      onClick={() => setSelectedLocation(loc.id)}
-                      style={{ left: loc.x, top: loc.y }}
-                      className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none"
-                    >
+                  {zones.map((z) => (
+                    <button key={z.id} onClick={() => setSel(z.id)} style={{ left: z.x, top: z.y }} className="absolute -translate-x-1/2 -translate-y-1/2 group focus:outline-none" aria-label={'Zona ' + z.nombre}>
                       <span className="relative flex h-6 w-6 items-center justify-center">
-                        <span
-                          className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-                          style={{ backgroundColor: loc.pinColor }}
-                        ></span>
-                        <span
-                          className={`relative inline-flex rounded-full h-4 w-4 border-2 border-[#0a0c10] shadow-lg transition-transform group-hover:scale-125 ${
-                            selectedLocation === loc.id ? 'scale-125 ring-4 ring-white/20' : ''
-                          }`}
-                          style={{ backgroundColor: loc.pinColor }}
-                        ></span>
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: z.pinColor }}></span>
+                        <span className={`relative inline-flex rounded-full h-4 w-4 border-2 border-[#0a0c10] shadow-lg transition-transform group-hover:scale-125 ${sel === z.id ? 'scale-125 ring-4 ring-white/20' : ''}`} style={{ backgroundColor: z.pinColor }}></span>
                       </span>
-                      <span className="mt-1 block rounded bg-[#181e27]/90 px-2 py-0.5 text-[10px] font-bold text-white whitespace-nowrap border border-[#34404e]">
-                        {loc.nombre}
-                      </span>
+                      <span className="mt-1 block rounded bg-[#181e27]/90 px-2 py-0.5 text-[10px] font-bold text-white whitespace-nowrap border border-[#34404e]">{z.nombre}</span>
                     </button>
                   ))}
                 </div>
-
-                <p className="relative z-10 text-xs text-[#a9b5c3] italic">
-                  💡 Haz clic sobre los marcadores para ver la ficha operativa e impresiones del cliente.
-                </p>
+                <p className="relative z-10 text-xs text-[#a9b5c3] italic">💡 Toca un marcador para ver qué hoteles piloto buscamos.</p>
               </div>
 
-              {/* Ficha Dinámica del Hotel Seleccionado */}
-              <div className="bg-[#181e27] border border-[#34404e] rounded-2xl p-6 flex flex-col justify-between">
+              <div className={card + ' p-6 flex flex-col justify-between'}>
                 <div>
                   <div className="flex items-center justify-between border-b border-[#34404e] pb-3">
-                    <span className="text-xs font-bold text-[#25d6e8] uppercase tracking-wider">
-                      DEMO DE ESTABLECIMIENTO
-                    </span>
-                    <span className="text-xs font-mono text-[#c5f34c]">{activeLocation.ciudad}</span>
+                    <span className={eyebrow + ' text-[#25d6e8]'}>ZONA PILOTO</span>
+                    <span className="text-xs font-mono text-[#c5f34c]">{zone.ciudad}</span>
                   </div>
-
-                  <h3 className="mt-4 text-xl font-bold text-white">{activeLocation.nombre}</h3>
-
-                  <div className="mt-3 flex items-center gap-2">
-                    <span className="text-amber-400">{'★'.repeat(activeLocation.estrellas)}</span>
-                    <span className="text-xs text-[#a9b5c3] font-semibold">Valoración excelente</span>
-                  </div>
-
+                  <h3 className="mt-4 text-xl font-bold text-white">{zone.nombre}</h3>
                   <div className="mt-4 rounded-xl bg-[#0e131a] border border-[#34404e] p-4 text-xs space-y-2">
-                    <div className="flex justify-between">
-                      <span className="text-[#a9b5c3]">Ocupación media:</span>
-                      <span className="font-bold text-[#c5f34c]">{activeLocation.ocupacion}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#a9b5c3]">Integración activa:</span>
-                      <span className="font-bold text-[#25d6e8]">{activeLocation.estado}</span>
-                    </div>
+                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Buscamos:</span><span className="font-bold text-[#c5f34c]">{zone.foco}</span></div>
+                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Estado:</span><span className="font-bold text-[#25d6e8]">Plazas piloto abiertas</span></div>
                   </div>
-
-                  {/* Reseña del Hotel Seleccionado */}
-                  <div className="mt-5 border-t border-[#34404e] pt-4">
-                    <p className="text-xs font-bold text-white mb-2">💬 Testimonio del equipo directivo:</p>
-                    <blockquote className="text-sm text-[#c7d0da] italic leading-relaxed bg-[#12161d] p-3 rounded-lg border-l-2 border-[#25d6e8]">
-                      "{activeLocation.resena}"
-                    </blockquote>
-                    <p className="mt-2 text-xs font-bold text-[#ff765e] text-right">— {activeLocation.autorResena}</p>
-                  </div>
+                  <p className="mt-5 text-sm text-[#c7d0da] leading-relaxed bg-[#12161d] p-3 rounded-lg border-l-2 border-[#25d6e8]">{zone.texto}</p>
                 </div>
-
-                <div className="mt-6 pt-4 border-t border-[#34404e]">
-                  <a
-                    href="#contacto"
-                    className="block w-full rounded-full bg-[#25d6e8] py-2.5 text-center text-xs font-bold text-[#071014] hover:bg-[#1fbecf] transition-all"
-                  >
-                    Solicitar demo adaptada a tu hotel
-                  </a>
-                </div>
+                <a href="#contacto" className="mt-6 block w-full rounded-full bg-[#25d6e8] py-2.5 text-center text-xs font-bold text-[#071014] hover:bg-[#1fbecf] transition-all">Quiero ser hotel piloto</a>
               </div>
             </div>
-
-            {/* Muro de Reseñas */}
-            {reviewsList.length > 0 && (
-              <div className="mt-10 border-t border-[#34404e] pt-8">
-                <h3 className="text-lg font-bold text-white mb-4">Valoraciones de directores en España</h3>
-                <div className="grid gap-4 md:grid-cols-2">
-                  {reviewsList.map((rev) => (
-                    <div key={rev.id} className="bg-[#181e27] border border-[#34404e] p-4 rounded-xl text-xs space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-white">{rev.nombre}</span>
-                        <span className="text-amber-400">{'★'.repeat(rev.estrellas)}</span>
-                      </div>
-                      <p className="text-[#25d6e8] font-semibold">{rev.alojamiento}</p>
-                      <p className="text-[#a9b5c3] italic">"{rev.comentario}"</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </section>
 
-        {/* Modal Pop-up para Dejar Reseñas */}
-        {isReviewModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-            <div className="w-full max-w-md border border-[#40505f] bg-[#181e27] p-6 rounded-2xl shadow-2xl relative">
-              <button
-                onClick={() => setIsReviewModalOpen(false)}
-                className="absolute top-4 right-4 text-white text-lg font-bold hover:text-[#25d6e8]"
-              >
-                ✕
-              </button>
-
-              <h3 className="text-xl font-bold text-white mb-1">Valorar M&D Solutions Technology</h3>
-              <p className="text-xs text-[#a9b5c3] mb-4">Comparte tu experiencia con la plataforma y el soporte técnico.</p>
-
-              <form onSubmit={handleAddReview} className="space-y-4 text-xs">
-                <div>
-                  <label className="block text-white font-bold mb-1">Nombre y Cargo</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Ej: Laura G. (Directora de Hotel)"
-                    value={newReview.nombre}
-                    onChange={(e) => setNewReview({ ...newReview, nombre: e.target.value })}
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-2.5 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white font-bold mb-1">Nombre del Alojamiento / Ciudad</label>
-                  <input
-                    type="text"
-                    placeholder="Ej: Hotel Boutique (Sevilla)"
-                    value={newReview.alojamiento}
-                    onChange={(e) => setNewReview({ ...newReview, alojamiento: e.target.value })}
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-2.5 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-white font-bold mb-1">Puntuación</label>
-                  <select
-                    value={newReview.estrellas}
-                    onChange={(e) => setNewReview({ ...newReview, estrellas: e.target.value })}
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-2.5 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  >
-                    <option value={5}>⭐⭐⭐⭐⭐ (5 / 5)</option>
-                    <option value={4}>⭐⭐⭐⭐ (4 / 5)</option>
-                    <option value={3}>⭐⭐⭐ (3 / 5)</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-white font-bold mb-1">Comentario o experiencia</label>
-                  <textarea
-                    rows="3"
-                    required
-                    placeholder="¿Qué ventajas ha aportado a la gestión diaria de tu establecimiento?"
-                    value={newReview.comentario}
-                    onChange={(e) => setNewReview({ ...newReview, comentario: e.target.value })}
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-2.5 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full rounded-full bg-[#25d6e8] py-3 font-bold text-[#071014] hover:bg-[#1fbecf] transition-all text-sm"
-                >
-                  Publicar Valoración
-                </button>
-
-                {reviewSuccessMsg && (
-                  <p className="text-[#c5f34c] font-semibold text-center mt-2">{reviewSuccessMsg}</p>
-                )}
-              </form>
-            </div>
-          </div>
-        )}
-
-        {/* FAQ Acordeón */}
         <section id="preguntas" className="bg-[#12161d] py-16 border-t border-[#34404e]">
           <div className="mx-auto max-w-4xl px-5">
-            <p className="text-xs font-bold uppercase tracking-widest text-[#25d6e8] text-center">PREGUNTAS FRECUENTES</p>
-            <h2 className="mt-3 text-3xl font-extrabold text-[#f6f8fb] text-center">Respuestas claras para tu establecimiento.</h2>
-
+            <p className={eyebrow + ' text-[#25d6e8] text-center'}>PREGUNTAS FRECUENTES</p>
+            <h2 className="mt-3 text-3xl font-extrabold text-center">Respuestas claras para tu establecimiento.</h2>
             <div className="mt-8 space-y-3">
-              {[
-                { id: 'q1', q: '¿Está adaptada a alojamientos en España?', a: 'Sí, cumple con los estándares exigidos para el registro de viajeros, facturación electrónica y RGPD.' },
-                { id: 'q2', q: '¿Qué áreas conecta la plataforma?', a: 'Conecta recepción, gobernanta, gestión de reservas, TPV, facturación y análisis de RevPAR.' },
-                { id: 'q3', q: '¿Cómo se realiza el proceso de migración?', a: 'Comenzamos con un análisis del software actual del hotel e importamos los datos para evitar interrupciones en la operativa.' },
-              ].map((faq) => (
-                <article key={faq.id} className="border border-[#34404e] bg-[#181e27] p-5 rounded-lg">
-                  <button
-                    onClick={() => toggleFaq(faq.id)}
-                    className="flex w-full items-center justify-between text-left font-bold text-white"
-                  >
-                    <span>{faq.q}</span>
-                    <span className="text-[#25d6e8] text-xl">{openFaqs[faq.id] ? '−' : '+'}</span>
+              {FAQS.map(([q, a], i) => (
+                <article key={i} className={card + ' p-5'}>
+                  <button onClick={() => setOpenFaqs({ ...openFaqs, [i]: !openFaqs[i] })} className="flex w-full items-center justify-between text-left font-bold text-white">
+                    <span>{q}</span><span className="text-[#25d6e8] text-xl">{openFaqs[i] ? '−' : '+'}</span>
                   </button>
-                  {openFaqs[faq.id] && (
-                    <p className="mt-3 pt-3 border-t border-[#34404e] text-sm text-[#a9b5c3]">{faq.a}</p>
-                  )}
+                  {openFaqs[i] && <p className="mt-3 pt-3 border-t border-[#34404e] text-sm text-[#a9b5c3]">{a}</p>}
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Compromiso y Garantía Operativa */}
-        <section id="compromiso" className="bg-[#0a0c10] py-16 border-t border-[#34404e]">
+        <section id="compromiso" className="py-16 border-t border-[#34404e]">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
-              <p className="text-xs font-bold uppercase tracking-widest text-[#c5f34c]">COMPROMISO Y GARANTÍA</p>
-              <h2 className="mt-2 text-3xl font-extrabold text-white">Garantías de nivel profesional para tu alojamiento.</h2>
+              <p className={eyebrow + ' text-[#c5f34c]'}>NUESTRO COMPROMISO</p>
+              <h2 className="mt-2 text-3xl font-extrabold">Lo que te prometemos como hotel piloto.</h2>
             </div>
-
             <div className="grid gap-6 md:grid-cols-2">
-              <div className="bg-[#181e27] border border-[#34404e] p-6 rounded-xl">
-                <span className="text-3xl mb-4 block">🔒</span>
-                <h3 className="text-xl font-bold text-[#25d6e8] mb-2">Protección de Datos & RGPD 100%</h3>
-                <p className="text-sm text-[#a9b5c3] leading-relaxed">
-                  Toda la información de reservas e historial de huéspedes se procesa con cifrado avanzado cumpliendo estrictamente el RGPD en la Unión Europea.
-                </p>
-              </div>
-
-              <div className="bg-[#181e27] border border-[#34404e] p-6 rounded-xl">
-                <span className="text-3xl mb-4 block">🛠️</span>
-                <h3 className="text-xl font-bold text-[#c5f34c] mb-2">Soporte Técnico Especializado 24/7</h3>
-                <p className="text-sm text-[#a9b5c3] leading-relaxed">
-                  Asistencia continua activa las 24 horas del día, los 365 días del año, para asegurar que la recepción y los canales de venta funcionen sin pausas.
-                </p>
-              </div>
-
-              <div className="bg-[#181e27] border border-[#34404e] p-6 rounded-xl">
-                <span className="text-3xl mb-4 block">⚡</span>
-                <h3 className="text-xl font-bold text-[#ff765e] mb-2">Mensajería Automatizada por WhatsApp</h3>
-                <p className="text-sm text-[#a9b5c3] leading-relaxed">
-                  Envío automático de datos de check-in, clave de acceso y confirmaciones de estancia directo al móvil del cliente sin carga manual.
-                </p>
-              </div>
-
-              <div className="bg-[#181e27] border border-[#34404e] p-6 rounded-xl">
-                <span className="text-3xl mb-4 block">📈</span>
-                <h3 className="text-xl font-bold text-[#9a6cff] mb-2">Escalabilidad de Software a Medida</h3>
-                <p className="text-sm text-[#a9b5c3] leading-relaxed">
-                  Preparado para adaptarse al crecimiento: desde una casa rural o boutique hotel hasta cadenas hoteleras multi-propiedad.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 bg-[#181e27] border border-[#34404e] p-6 rounded-xl text-center">
-              <span className="text-3xl mb-2 block">🧠</span>
-              <h3 className="text-xl font-bold text-white mb-2">Organización Personal & Panel Centralizado</h3>
-              <p className="text-sm text-[#a9b5c3] max-w-3xl mx-auto leading-relaxed">
-                Estructura las tareas del equipo, cuadrantes de turnos y pendientes desde un único tablero intuitivo. Despídete de notas sueltas y hojas de cálculo desactualizadas.
-              </p>
+              {PLEDGES.map(([ic, t, d, c]) => (
+                <div key={t} className={card + ' p-6'}>
+                  <span className="text-3xl mb-4 block">{ic}</span>
+                  <h3 className="text-xl font-bold mb-2" style={{ color: c }}>{t}</h3>
+                  <p className="text-sm text-[#a9b5c3] leading-relaxed">{d}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Contacto Directo */}
         <section id="contacto" className="bg-[#12161d] py-16 border-t border-[#34404e]">
           <div className="mx-auto grid max-w-7xl gap-9 px-5 lg:grid-cols-[.82fr_1.18fr] lg:px-8">
             <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-[#25d6e8]">CONTACTO DIRECTO</p>
-              <h2 className="mt-4 text-3xl font-extrabold text-[#f6f8fb]">Hablemos de tu proyecto hotelero.</h2>
-              <p className="mt-4 text-sm text-[#a9b5c3]">Ponte en contacto con nuestro equipo para analizar las necesidades de tu establecimiento.</p>
-
-              <div className="mt-6 space-y-3 bg-[#181e27] border border-[#34404e] p-5 rounded-xl">
-                <p className="text-sm text-white font-bold">Atención Directa:</p>
-                <p className="text-sm text-[#25d6e8]">📞 Daniel: <span className="text-white font-mono">+34 647 56 47 33</span></p>
-                <p className="text-sm text-[#c5f34c]">📞 María Elena: <span className="text-white font-mono">+34 362 53 91 283</span></p>
-                <p className="text-sm text-[#ff765e]">
-                  ✉️ Email: <a href="mailto:mdsolutionstecnology@gmail.com" className="text-white font-mono hover:underline">mdsolutionstecnology@gmail.com</a>
-
-                </p>
+              <p className={eyebrow + ' text-[#25d6e8]'}>CONTACTO DIRECTO</p>
+              <h2 className="mt-4 text-3xl font-extrabold">Pide acceso anticipado.</h2>
+              <p className="mt-4 text-sm text-[#a9b5c3]">Cuéntanos cómo es tu alojamiento y te respondemos para analizar tus necesidades.</p>
+              <div className={card + ' mt-6 space-y-3 p-5'}>
+                <p className="text-sm text-white font-bold">Atención directa:</p>
+                <p className="text-sm text-[#25d6e8]">📞 Daniel: <a href="tel:+34647564733" className="text-white font-mono">+34 647 56 47 33</a></p>
+                <p className="text-sm text-[#c5f34c]">📞 María Elena: <a href="https://wa.me/5493625391283" className="text-white font-mono">+54 9 362 539 1283</a></p>
+                <p className="text-sm text-[#ff765e]">✉️ <a href="mailto:mdsolutionstecnology@gmail.com" className="text-white font-mono hover:underline break-all">mdsolutionstecnology@gmail.com</a></p>
               </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="border border-[#40505f] bg-[#181e27] p-6 sm:p-8 rounded-xl flex flex-col gap-4">
+            <form onSubmit={onSubmit} className="border border-[#40505f] bg-[#181e27] p-6 sm:p-8 rounded-xl flex flex-col gap-4">
               <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-sm font-bold text-white">Nombre</label>
-                  <input
-                    type="text"
-                    name="nombre"
-                    value={formData.nombre}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 block text-sm font-bold text-white">Nombre del Hotel o Empresa</label>
-                  <input
-                    type="text"
-                    name="alojamiento"
-                    value={formData.alojamiento}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
+                {[['nombre', 'Nombre', 'text', true], ['alojamiento', 'Nombre del Hotel o Empresa', 'text', true], ['email', 'Correo electrónico', 'email', true], ['telefono', 'Teléfono de contacto', 'tel', false]].map(([n, l, t, r]) => (
+                  <div key={n}>
+                    <label className="mb-1 block text-sm font-bold text-white">{l}</label>
+                    <input type={t} name={n} value={form[n]} onChange={onChange} required={r} className={field} />
+                  </div>
+                ))}
               </div>
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1 block text-sm font-bold text-white">Correo electrónico</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
-                <div>
-                  <label className="mb-1 block text-sm font-bold text-white">Teléfono de contacto</label>
-                  <input
-                    type="tel"
-                    name="telefono"
-                    value={formData.telefono}
-                    onChange={handleChange}
-                    className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                  />
-                </div>
-              </div>
-
               <div>
                 <label className="mb-1 block text-sm font-bold text-white">Tipo de establecimiento</label>
-                <select
-                  name="tipo_negocio"
-                  value={formData.tipo_negocio}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                >
+                <select name="tipo_negocio" value={form.tipo_negocio} onChange={onChange} required className={field}>
                   <option value="">Selecciona una opción</option>
                   <option value="Hotel Urbano">Hotel Urbano</option>
                   <option value="Resort">Resort / Hotel de Costa</option>
@@ -868,27 +319,12 @@ export default function Home() {
                   <option value="Otro">Otro tipo de alojamiento</option>
                 </select>
               </div>
-
               <div>
                 <label className="mb-1 block text-sm font-bold text-white">¿Qué aspecto te gustaría optimizar?</label>
-                <textarea
-                  name="mensaje"
-                  rows="4"
-                  value={formData.mensaje}
-                  onChange={handleChange}
-                  required
-                  className="w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]"
-                ></textarea>
+                <textarea name="mensaje" rows="4" value={form.mensaje} onChange={onChange} required className={field}></textarea>
               </div>
-
-              <button
-                type="submit"
-                disabled={status.loading}
-                className="mt-2 rounded-full bg-[#25d6e8] py-3 px-6 font-bold text-[#071014] hover:bg-[#1fbecf] transition-all disabled:opacity-50"
-              >
-                {status.loading ? 'Enviando...' : 'Enviar consulta'}
-              </button>
-
+              <input type="text" name="website" value={form.website} onChange={onChange} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
+              <button type="submit" disabled={status.loading} className="mt-2 rounded-full bg-[#25d6e8] py-3 px-6 font-bold text-[#071014] hover:bg-[#1fbecf] transition-all disabled:opacity-50">{status.loading ? 'Enviando...' : 'Enviar solicitud'}</button>
               {status.success && <p className="text-[#c5f34c] text-sm font-semibold">{status.success}</p>}
               {status.error && <p className="text-[#ff765e] text-sm font-semibold">{status.error}</p>}
             </form>
@@ -896,18 +332,13 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="border-t border-[#34404e] bg-[#0a0c10] py-9 px-5 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between gap-5 lg:flex-row lg:items-center">
-          <div>
-            <p className="font-bold text-white">M&D Solutions Technology</p>
-            <p className="text-xs text-[#a9b5c3] mt-1">
-              Atención directa: Daniel (+34 647 56 47 33) | María Elena (+34 362 53 91 283) · Email: mdsolutionstecnology@gmail.com
-
-            </p>
-            <p className="text-xs text-[#a9b5c3] mt-1">Soluciones informáticas y gestión integral para el sector hotelero.</p>
-          </div>
-          <p className="text-sm text-[#a9b5c3]">&copy; {new Date().getFullYear()} M&D Solutions Technology. Todos los derechos reservados.</p>
+        <div className="mx-auto max-w-7xl space-y-3 text-xs text-[#a9b5c3]">
+          <p className="font-bold text-white text-sm">M&D Solutions Technology</p>
+          <p>Daniel (+34 647 56 47 33) · María Elena (+54 9 362 539 1283) · mdsolutionstecnology@gmail.com</p>
+          {/* TODO: completar razón social, NIF y domicilio (obligatorio por LSSI) */}
+          <p>Titular: [razón social o nombre completo] · NIF [número] · Domicilio [dirección]. Los datos del formulario se usan solo para responder tu consulta; puedes pedir su acceso o eliminación por correo.</p>
+          <p>&copy; {new Date().getFullYear()} M&D Solutions Technology. Todos los derechos reservados.</p>
         </div>
       </footer>
     </div>
