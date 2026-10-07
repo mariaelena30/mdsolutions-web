@@ -1,79 +1,73 @@
 // pages/api/contacts.js
-// Guarda cada contacto en Firestore Y manda el aviso por email vía Brevo.
-// Todo el handler está envuelto en try/catch para que NUNCA tire un 500
-// sin explicación: siempre devuelve JSON con el detalle del error.
-
+// Guarda el contacto en Firestore y avisa por email con Brevo.
+// Los detalles técnicos de los errores se registran en el servidor, nunca se envían al navegador.
 import admin, { db, firebaseInitError } from '../../lib/firebaseAdmin';
+import { validateContact, escapeHtml, tooManyRequests } from '../../lib/contactUtils.mjs';
 
 export default async function handler(req, res) {
   try {
     if (req.method !== 'POST') {
+      res.setHeader('Allow', 'POST');
       return res.status(405).json({ message: 'Método no permitido' });
     }
 
-    const { nombre, alojamiento, email, telefono, tipo_negocio, mensaje } = req.body;
-
-    if (!nombre || !alojamiento || !email || !tipo_negocio || !mensaje) {
-      return res.status(400).json({ message: 'Todos los campos obligatorios deben completarse' });
+    const ip = (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'desconocida').toString().split(',')[0].trim();
+    if (tooManyRequests(ip)) {
+      return res.status(429).json({ message: 'Demasiados envíos. Inténtalo de nuevo en unos minutos.' });
     }
 
-    // 1. Guardar en Firestore (no bloqueante: si falla, seguimos con el email igual)
+    const result = validateContact(req.body);
+    if (result.spam) return res.status(200).json({ success: true }); // a los bots les decimos que fue bien
+    if (!result.ok) return res.status(400).json({ message: result.error });
+    const { nombre, alojamiento, email, telefono, tipo_negocio, mensaje } = result.data;
+
+    // 1. Firestore (no bloqueante)
     let contactId = null;
-    let firestoreError = null;
     if (db) {
       try {
-        const docRef = await db.collection('contacts').add({
-          nombre,
-          alojamiento,
-          email,
-          telefono: telefono || '',
-          tipo_negocio,
-          mensaje,
+        const ref = await db.collection('contacts').add({
+          nombre, alojamiento, email, telefono, tipo_negocio, mensaje,
           status: 'pendiente',
           createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-        contactId = docRef.id;
-      } catch (dbError) {
-        firestoreError = dbError.message;
-        console.error('Error guardando el contacto en Firestore:', dbError);
+        contactId = ref.id;
+      } catch (e) {
+        console.error('Firestore:', e.message);
       }
     } else {
-      firestoreError = firebaseInitError || 'Firebase Admin no se inicializó';
+      console.error('Firestore no inicializado:', firebaseInitError);
     }
 
-    // 2. Enviar el email vía Brevo, con remitente FIJO y verificado
+    // 2. Email con Brevo
+    if (!process.env.BREVO_API_KEY || !process.env.ADMIN_EMAIL) {
+      console.error('Faltan BREVO_API_KEY o ADMIN_EMAIL');
+      return res.status(500).json({ message: 'No pudimos enviar tu mensaje. Inténtalo más tarde.' });
+    }
     const response = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY,
-      },
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'api-key': process.env.BREVO_API_KEY },
       body: JSON.stringify({
         sender: { name: 'M&D Solutions - Web', email: process.env.ADMIN_EMAIL },
         to: [{ email: process.env.ADMIN_EMAIL, name: 'M&D Solutions' }],
-        replyTo: { email: email, name: nombre },
-        subject: `Nuevo mensaje de contacto de ${nombre} (${alojamiento})`,
+        replyTo: { email, name: nombre },
+        subject: `Nuevo contacto: ${nombre} (${alojamiento})`.slice(0, 200),
         htmlContent: `
-          <p><strong>Nombre:</strong> ${nombre}</p>
-          <p><strong>Alojamiento/Empresa:</strong> ${alojamiento}</p>
-          <p><strong>Email:</strong> ${email}</p>
-          <p><strong>Teléfono:</strong> ${telefono || 'No indicado'}</p>
-          <p><strong>Tipo de establecimiento:</strong> ${tipo_negocio}</p>
-          <p><strong>Mensaje:</strong> ${mensaje}</p>
-        `,
+          <p><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
+          <p><strong>Alojamiento/Empresa:</strong> ${escapeHtml(alojamiento)}</p>
+          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+          <p><strong>Teléfono:</strong> ${escapeHtml(telefono || 'No indicado')}</p>
+          <p><strong>Tipo:</strong> ${escapeHtml(tipo_negocio)}</p>
+          <p><strong>Mensaje:</strong><br>${escapeHtml(mensaje).replace(/\n/g, '<br>')}</p>`,
       }),
     });
 
-    if (response.ok) {
-      return res.status(200).json({ success: true, message: 'Mensaje enviado con éxito', contactId, firestoreError });
-    } else {
-      const errorData = await response.json();
-      console.error('Error de Brevo:', errorData);
-      return res.status(400).json({ success: false, brevoError: errorData, contactId, firestoreError });
+    if (!response.ok) {
+      console.error('Brevo:', response.status, await response.text().catch(() => ''));
+      return res.status(502).json({ message: 'No pudimos enviar tu mensaje. Inténtalo más tarde.' });
     }
+    return res.status(200).json({ success: true, message: 'Mensaje enviado con éxito' });
   } catch (error) {
-    console.error('Error inesperado en /api/contacts:', error);
-    return res.status(500).json({ success: false, message: 'Error interno del servidor', error: error.message, stack: error.stack });
+    console.error('Error en /api/contacts:', error);
+    return res.status(500).json({ message: 'Error interno del servidor' });
   }
 }
