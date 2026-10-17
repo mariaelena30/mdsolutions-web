@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
-const NAV = [['inicio','Inicio'],['precios','Precios'],['modulos','Software de gestión'],['mapa-demos','Dónde trabajamos'],['preguntas','Preguntas']];
+const NAV = [['inicio','Inicio'],['precios','Precios'],['modulos','Próximamente'],['mapa-demos','Dónde trabajamos'],['preguntas','Preguntas']];
 const SLIDES = [
   { label: 'Reservas', bg: 'rgb(22, 37, 42)', fg: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/5371683/pexels-photo-5371683.jpeg', alt: 'Recepción de hotel' },
   { label: 'Habitaciones', bg: 'rgb(37, 37, 26)', fg: 'rgb(197, 243, 76)', img: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Habitación de hotel boutique' },
@@ -11,34 +11,35 @@ const SLIDES = [
 ];
 const PRICES = [
   { t: 'Web para tu alojamiento', p: 'Desde 150 €', n: 'pago único', color: '#25d6e8', cta: 'Quiero mi web', items: ['Diseño adaptado al móvil', 'Con tus fotos y tus datos de contacto', 'Te decimos el precio final antes de empezar'] },
-  { t: 'Soporte y mantenimiento', p: '4 € al mes', n: 'por alojamiento · opcional', color: '#c5f34c', cta: 'Quiero soporte', items: ['Te ayudamos si algo falla', 'Atención directa por teléfono o correo'] },
-  { t: 'Software de gestión (SaaS)', p: 'Gratis en el piloto', n: 'en desarrollo', color: '#ff9c8d', cta: 'Quiero ser piloto', items: ['Parte de viajeros preparado', 'Estado de limpieza de cada habitación', 'Es gratis mientras dure el piloto'] }
+  { t: 'Mantenimiento', p: '4 € al mes', n: 'por alojamiento · opcional', color: '#c5f34c', cta: 'Quiero mantenimiento', items: ['Nos ocupamos de que tu web siga funcionando', 'Te echamos una mano si algo falla', 'Atención directa por teléfono o correo'] },
+  { t: 'Programa de gestión (SaaS)', p: 'Próximamente', n: 'aún no está a la venta', color: '#ff9c8d', cta: 'Avísame cuando esté', items: ['Parte de viajeros', 'Estado de limpieza de las habitaciones', 'Te avisamos en cuanto esté listo'] }
 ];
 const MODULES = [
-  { id: 'm5', cat: 'recepcion', icon: '🛂', title: 'Parte de viajeros', soon: false, text: 'El registro de viajeros preparado con los datos que te manda el huésped, sin copiar y pegar.', detail: 'Pensado para el registro obligatorio de viajeros en España. Lo afinamos contigo en el piloto.', color: '#ff9c8d' },
+  { id: 'm5', cat: 'recepcion', icon: '🛂', title: 'Parte de viajeros', soon: false, text: 'El registro de viajeros preparado con los datos que te manda el huésped, sin copiar y pegar.', detail: 'Pensado para el registro obligatorio de viajeros en España. Estamos preparándolo.', color: '#ff9c8d' },
   { id: 'm1', cat: 'recepcion', icon: '💻', title: 'Reservas y huéspedes', soon: false, text: 'Llegadas, salidas y estancias de un vistazo, con reservas directas desde tu web.', detail: 'Desde que el huésped pregunta hasta que se va, todo queda en el mismo sitio y sin perder el hilo.', color: '#25d6e8' },
   { id: 'm2', cat: 'housekeeping', icon: '🔌', title: 'Habitaciones y limpieza', soon: false, text: 'Qué está limpio, qué falta por limpiar y qué está ocupado, para que el equipo no tenga que preguntar.', detail: 'Recepción y limpieza miran la misma pantalla, así no hay llamadas ni mensajes de "¿ya está lista la 3?".', color: '#c5f34c' },
   { id: 'm3', cat: 'facturacion', icon: '🧾', title: 'Facturación y TPV', soon: true, text: 'Consumos, TPV y facturas adaptadas a la normativa fiscal de España.', detail: 'Restaurante, bar, spa o tasa turística dentro de la cuenta del huésped.', color: '#ff765e' },
   { id: 'm4', cat: 'operaciones', icon: '📊', title: 'Analítica y RevPAR', soon: true, text: 'Ocupación, ADR, RevPAR y ritmo de reservas por canal.', detail: 'Datos de tu propio alojamiento para decidir precios y disponibilidad con cabeza.', color: '#9a6cff' }
 ];
 const ZONES = [
-  { id: 'esp0', nombre: 'Salamanca', tipo: 'apartamentos', ciudad: 'Salamanca', foco: 'Apartamentos turísticos', pinColor: '#9a6cff', x: '30%', y: '38%', texto: 'Empezamos aquí: buscamos propietarios de apartamentos turísticos que quieran quitarse el papeleo del parte de viajeros y coordinar mejor las limpiezas.' },
-  { id: 'esp1', nombre: 'Madrid', tipo: 'hoteles', ciudad: 'Madrid (Centro)', foco: 'Hoteles urbanos', pinColor: '#25d6e8', x: '48%', y: '45%', texto: 'Buscamos hoteles urbanos de 10 a 50 habitaciones para probar reservas, recepción y partes de viajeros.' },
-  { id: 'esp2', nombre: 'Costa del Sol', tipo: 'resorts', ciudad: 'Málaga', foco: 'Resorts y hoteles de costa', pinColor: '#c5f34c', x: '40%', y: '82%', texto: 'Buscamos alojamientos de costa con alta rotación de habitaciones para probar el control de limpieza entre reservas.' },
-  { id: 'esp3', nombre: 'Baleares', tipo: 'cabanas', ciudad: 'Islas Baleares', foco: 'Casas rurales y villas', pinColor: '#ff765e', x: '78%', y: '58%', texto: 'Buscamos casas rurales y villas que quieran simplificar el check-in y el registro de huéspedes.' }
+  { id: 'esp0', nombre: 'Salamanca', tipo: 'apartamentos', ciudad: 'Salamanca', foco: 'Apartamentos turísticos', pinColor: '#9a6cff', x: '30%', y: '38%', texto: 'Hacemos la web de tu apartamento turístico para que te encuentren más fácil y te escriban directamente.' },
+  { id: 'esp1', nombre: 'Madrid', tipo: 'hoteles', ciudad: 'Madrid (Centro)', foco: 'Hoteles y pensiones', pinColor: '#25d6e8', x: '48%', y: '45%', texto: 'Hacemos webs para hoteles pequeños y pensiones, o mejoramos la que ya tienes.' },
+  { id: 'esp2', nombre: 'Costa del Sol', tipo: 'resorts', ciudad: 'Málaga', foco: 'Hoteles y apartamentos de costa', pinColor: '#c5f34c', x: '40%', y: '82%', texto: 'Hacemos webs para alojamientos de costa: hoteles, apartamentos y villas.' },
+  { id: 'esp3', nombre: 'Baleares', tipo: 'cabanas', ciudad: 'Islas Baleares', foco: 'Casas rurales y villas', pinColor: '#ff765e', x: '78%', y: '58%', texto: 'Hacemos webs para casas rurales y villas, con tus fotos y tus datos de contacto.' }
 ];
 const FAQS = [
-  ['¿Cuánto cuesta?', 'La web de tu alojamiento sale desde 150 € (pago único) y, si quieres que nos encarguemos del soporte y el mantenimiento, son 4 € al mes. El software de gestión es gratis durante el piloto y te diremos el precio antes de que decidas si te quedas.'],
-  ['¿Está pensada para alojamientos en España?', 'Sí. Lo estamos diseñando para hoteles, casas rurales y apartamentos turísticos de España, con el registro de viajeros y el RGPD siempre en mente. Lo ajustamos con alojamientos piloto.'],
-  ['¿Qué áreas conecta la plataforma?', 'Ahora mismo trabajamos en reservas, parte de viajeros y limpieza. Facturación, TPV y analítica llegan después.'],
-  ['¿Qué significa SaaS?', 'Es un software que usas desde el navegador y pagas con una cuota mensual. No instalas nada y las mejoras te llegan solas.'],
-  ['¿Cómo funciona el piloto?', 'Echamos un vistazo a cómo llevas hoy el alojamiento, te dejamos el panel listo y lo usas en tu día a día. Lo ajustamos contigo antes de que decidas si te quedas.']
+  ['¿Cuánto cuesta?', 'La web sale desde 150 € (pago único). Si quieres que nos encarguemos del mantenimiento, son 4 € al mes. Te decimos el precio final antes de empezar, ¿vale?'],
+  ['¿Qué incluye la web?', 'Diseño adaptado al móvil, con tus fotos y tus datos de contacto. Cuéntanos qué necesitas y te decimos qué entra en el precio.'],
+  ['¿Y si ya tengo una web?', 'Podemos mejorarla y dejarla más profesional. Cuéntanos cuál es y te decimos qué se puede hacer.'],
+  ['¿Y si no tengo ni idea de webs?', 'Vale, no pasa nada. Tú nos cuentas cómo es tu alojamiento y nosotros nos encargamos del resto.'],
+  ['¿Qué es el mantenimiento?', 'Por 4 € al mes nos ocupamos de que tu web siga funcionando y te echamos una mano si algo falla.'],
+  ['¿Qué es eso del programa de gestión?', 'Es un software (SaaS) que estamos preparando para llevar el parte de viajeros y la limpieza de las habitaciones desde el navegador. Todavía no está a la venta.']
 ];
 const PLEDGES = [
-  ['🔒', 'Tus datos, bajo RGPD', 'Los datos de reservas y huéspedes se tratan conforme al RGPD, con contrato de encargado de tratamiento.', '#25d6e8'],
-  ['🛠️', 'Soporte directo', 'Si tienes un problema, nos llamas o nos escribes y te contesta quien lo ha programado.', '#c5f34c'],
-  ['⚡', 'WhatsApp para check-in', 'En desarrollo: que el huésped reciba por WhatsApp las instrucciones de check-in y la confirmación.', '#ff765e'],
-  ['📈', 'Crece contigo', 'Empiezas con un apartamento o una casa rural y, si el negocio crece, añades más propiedades.', '#9a6cff']
+  ['💶', 'Precio claro', 'La web, desde 150 €. El mantenimiento, 4 € al mes. Te decimos el precio final antes de empezar.', '#25d6e8'],
+  ['🤝', 'Trato directo', 'Hablas con las personas que hacen tu web, por teléfono, correo o WhatsApp.', '#c5f34c'],
+  ['📱', 'Pensada para el móvil', 'Mucha gente reserva desde el móvil, así que tu web se ve bien en cualquier pantalla.', '#ff765e'],
+  ['🔧', 'Mantenimiento sin líos', 'Por 4 € al mes nos ocupamos de que tu web siga funcionando y te ayudamos si algo falla.', '#9a6cff']
 ];
 const card = 'bg-[#181e27] border border-[#34404e] rounded-xl';
 const field = 'w-full bg-[#0e131a] border border-[#40505f] p-3 rounded text-white focus:outline-none focus:border-[#25d6e8]';
@@ -46,7 +47,7 @@ const eyebrow = 'text-xs font-bold uppercase tracking-widest';
 
 export default function Home() {
   const [menu, setMenu] = useState(false);
-  const [rooms, setRooms] = useState('11-50');
+  const [rooms, setRooms] = useState('1');
   const [modFilter, setModFilter] = useState('todos');
   const [openMods, setOpenMods] = useState({});
   const [openFaqs, setOpenFaqs] = useState({});
@@ -70,7 +71,7 @@ export default function Home() {
     setStatus({ loading: true, success: null, error: null });
     try {
       const res = await fetch('/api/contacts', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(form) });
-      if (res.ok) { setStatus({ loading: false, success: '¡Gracias! Hemos recibido tu mensaje y te escribimos pronto.', error: null }); setForm(empty); }
+      if (res.ok) { setStatus({ loading: false, success: '¡Hecho! Hemos recibido tu mensaje y te escribimos pronto.', error: null }); setForm(empty); }
       else setStatus({ loading: false, success: null, error: 'No hemos podido enviar tu mensaje. Inténtalo otra vez o llámanos.' });
     } catch { setStatus({ loading: false, success: null, error: 'Error al procesar la solicitud.' }); }
   };
@@ -82,9 +83,9 @@ export default function Home() {
   return (
     <div className="w-full overflow-x-hidden bg-[#0a0c10] text-[#f6f8fb] font-sans selection:bg-[#25d6e8] selection:text-[#071014]">
       <Head>
-        <title>M&D Solutions Technology | Webs y software para alojamientos en España</title>
+        <title>M&D Solutions Technology | Webs para alojamientos en España</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Webs para alojamientos desde 150 € y software en la nube para quitarte el papeleo del parte de viajeros y las limpiezas. Hoteles, casas rurales y apartamentos turísticos en España." />
+        <meta name="description" content="Webs para hoteles, casas rurales y apartamentos turísticos desde 150 €. Mantenimiento por 4 € al mes. Hablas directamente con nosotros." />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Work+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
       </Head>
 
@@ -112,44 +113,36 @@ export default function Home() {
         <section id="inicio" className="relative isolate overflow-hidden border-b border-[#34404e] py-12">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 lg:grid-cols-[.92fr_1.08fr] lg:px-8">
             <div>
-              <p className={eyebrow + ' text-[#25d6e8]'}>WEBS Y SOFTWARE (SaaS) PARA ALOJAMIENTOS · ESPAÑA</p>
-              <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight sm:text-6xl">Web propia para tu alojamiento desde 150 €, y el software que te quita el papeleo.</h1>
-              <p className="mt-6 max-w-xl text-lg leading-7 text-[#c7d0da]">Creamos la web de tu hotel, casa rural o apartamento turístico desde 150 € y, si quieres, te la mantenemos y te damos soporte por 4 € al mes. Además estamos montando un software en la nube (SaaS) para el parte de viajeros y las limpiezas: pruébalo gratis en el piloto.</p>
+              <p className={eyebrow + ' text-[#25d6e8]'}>WEBS PARA ALOJAMIENTOS · ESPAÑA</p>
+              <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-tight sm:text-6xl">Una web para tu alojamiento desde 150 €. Sin líos y sin rodeos.</h1>
+              <p className="mt-6 max-w-xl text-lg leading-7 text-[#c7d0da]">Hacemos la web de tu hotel, casa rural o apartamento turístico para que te encuentren más fácil y los huéspedes puedan escribirte directamente. Y si ya tienes una, te la dejamos más profesional. Mantenimiento por 4 € al mes, si quieres.</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="#contacto" className="rounded-full bg-[#ff765e] px-6 py-3 text-center font-bold text-[#17100e] hover:opacity-90 transition-opacity">Quiero mi web</a>
                 <a href="#precios" className="rounded-full border border-[#51606e] bg-[#181e27] px-6 py-3 text-center font-bold hover:bg-[#202834] transition-colors">Ver precios</a>
               </div>
               <div className="mt-9 flex flex-wrap gap-2">
                 <span className="rounded-full border border-[#25d6e8]/30 bg-[#16252a] px-3 py-2 text-sm font-bold text-[#25d6e8]">Web propia</span>
-                <span className="rounded-full border border-[#c5f34c]/30 bg-[#25251a] px-3 py-2 text-sm font-bold text-[#c5f34c]">Limpieza</span>
-                <span className="rounded-full border border-[#ff9c8d]/30 bg-[#2a1d1c] px-3 py-2 text-sm font-bold text-[#ff9c8d]">Parte de viajeros</span>
+                <span className="rounded-full border border-[#c5f34c]/30 bg-[#25251a] px-3 py-2 text-sm font-bold text-[#c5f34c]">Mantenimiento</span>
+                <span className="rounded-full border border-[#ff9c8d]/30 bg-[#2a1d1c] px-3 py-2 text-sm font-bold text-[#ff9c8d]">Atención directa</span>
               </div>
             </div>
 
             <div className="relative bg-[#181e27] border border-[#34404e] rounded-2xl p-6 shadow-2xl">
               <div className="flex items-center justify-between border-b border-[#34404e] pb-4">
-                <span className="font-bold text-white">Qué te recomendamos</span>
+                <span className="font-bold text-white">Calcula lo que pagarías</span>
                 <span className="h-3 w-3 rounded-full bg-[#c5f34c] shadow-[0_0_12px_#c5f34c]"></span>
               </div>
-              <p className="mt-4 text-xs font-semibold text-[#a9b5c3] uppercase tracking-wider">¿Cuántas habitaciones o apartamentos llevas?</p>
-              <div className="mt-2 grid grid-cols-3 gap-2">
-                {['1-10', '11-50', '50+'].map((r) => (
-                  <button key={r} onClick={() => setRooms(r)} className={`py-2 text-xs font-bold rounded-lg border transition-all ${rooms === r ? 'bg-[#25d6e8] text-[#071014] border-[#25d6e8]' : 'bg-[#0e131a] text-slate-300 border-[#34404e] hover:border-[#25d6e8]'}`}>{r} habs.</button>
+              <p className="mt-4 text-xs font-semibold text-[#a9b5c3] uppercase tracking-wider">¿Cuántos alojamientos tienes?</p>
+              <div className="mt-2 grid grid-cols-4 gap-2">
+                {['1', '2', '3', '4+'].map((r) => (
+                  <button key={r} onClick={() => setRooms(r)} className={`py-2 text-xs font-bold rounded-lg border transition-all ${rooms === r ? 'bg-[#25d6e8] text-[#071014] border-[#25d6e8]' : 'bg-[#0e131a] text-slate-300 border-[#34404e] hover:border-[#25d6e8]'}`}>{r === '1' ? '1 web' : r + ' webs'}</button>
                 ))}
               </div>
-              <div className="mt-6 border-t border-[#34404e] pt-4">
-                <p className="text-xs font-bold text-[#25d6e8] uppercase">Software de gestión (piloto):</p>
-                <ul className="mt-2 space-y-1 text-sm">
-                  <li>✔ Recepción y parte de viajeros</li>
-                  <li>✔ Limpieza y estado de las habitaciones</li>
-                  {rooms !== '1-10' && <li className="text-[#c5f34c]">✔ Facturación y TPV (próximamente)</li>}
-                  {rooms === '50+' && <li className="text-[#9a6cff]">✔ Analítica y RevPAR (próximamente)</li>}
-                </ul>
+              <div className="mt-6 space-y-3 border-t border-[#34404e] pt-4 text-sm">
+                <div className="flex items-center justify-between gap-3"><span className="text-[#a9b5c3]">Tu web (pago único):</span><span className="font-bold text-[#25d6e8]">{rooms === '4+' ? 'A consultar' : 'Desde ' + Number(rooms) * 150 + ' €'}</span></div>
+                <div className="flex items-center justify-between gap-3"><span className="text-[#a9b5c3]">Mantenimiento (opcional):</span><span className="font-bold text-[#c5f34c]">{rooms === '4+' ? 'A consultar' : Number(rooms) * 4 + ' € al mes'}</span></div>
               </div>
-              <div className="mt-6 border border-[#34404e] bg-[#0e131a] p-3 rounded-lg text-xs flex justify-between items-center">
-                <span className="text-[#a9b5c3]">Tu web:</span>
-                <span className="font-bold text-[#c5f34c]">desde 150 € + 4 €/mes de soporte</span>
-              </div>
+              <p className="mt-5 text-xs text-[#a9b5c3]">Precio orientativo. Te decimos el precio final antes de empezar.</p>
             </div>
           </div>
         </section>
@@ -158,7 +151,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <p className={eyebrow + ' text-[#c5f34c]'}>PRECIOS CLAROS</p>
             <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Lo que cuesta, sin rodeos.</h2>
-            <p className="mt-3 max-w-2xl text-[#c7d0da]">Pagas la web una vez y, si quieres, nos encargamos de mantenerla. El software de gestión lo pruebas gratis.</p>
+            <p className="mt-3 max-w-2xl text-[#c7d0da]">Pagas la web una vez y, si quieres, nos encargamos de mantenerla. Así de fácil.</p>
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {PRICES.map((x) => (
                 <article key={x.t} className={card + ' p-6 flex flex-col'}>
@@ -179,8 +172,8 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-5 mb-6">
               <div>
-                <p className={eyebrow + ' text-[#25d6e8]'}>EL HOTEL EN MOVIMIENTO</p>
-                <h2 className="mt-2 text-3xl font-extrabold">Hecho para cómo se trabaja en España.</h2>
+                <p className={eyebrow + ' text-[#25d6e8]'}>ALOJAMIENTOS DE TODO TIPO</p>
+                <h2 className="mt-2 text-3xl font-extrabold">Webs hechas para alojamientos como el tuyo.</h2>
               </div>
               <div className="flex gap-2">
                 {[['←', () => setGi((p) => (p - 1 + SLIDES.length) % SLIDES.length), 'Anterior'], [auto ? '⏸' : '▶', () => setAuto(!auto), 'Pausar o reanudar'], ['→', () => setGi((p) => (p + 1) % SLIDES.length), 'Siguiente']].map(([s, f, a]) => (
@@ -200,8 +193,8 @@ export default function Home() {
 
         <section id="modulos" className="bg-[#12161d] py-16">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
-            <p className={eyebrow + ' text-[#ff9c8d]'}>SOFTWARE DE GESTIÓN · EN DESARROLLO</p>
-            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Y estamos montando el programa que te quita el papeleo.</h2>
+            <p className={eyebrow + ' text-[#ff9c8d]'}>PRÓXIMAMENTE</p>
+            <h2 className="mt-3 text-3xl font-extrabold sm:text-4xl">Estamos preparando un programa de gestión para tu alojamiento. Aún no está a la venta.</h2>
             <div className="mt-6 flex flex-wrap gap-2">
               {[['todos', 'Todos'], ['recepcion', 'Recepción'], ['housekeeping', 'Limpieza'], ['facturacion', 'Facturación / TPV'], ['operaciones', 'RevPAR & Análisis']].map(([k, l]) => (
                 <button key={k} onClick={() => setModFilter(k)} className={`px-4 py-2 rounded-full text-xs font-bold transition-all ${modFilter === k ? 'bg-[#25d6e8] text-[#071014]' : 'bg-[#181e27] text-slate-300 border border-[#34404e] hover:border-[#25d6e8]'}`}>{l}</button>
@@ -229,8 +222,8 @@ export default function Home() {
         <section id="mapa-demos" className="py-16 border-t border-[#34404e]">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <p className={eyebrow + ' text-[#25d6e8]'}>DÓNDE TRABAJAMOS</p>
-            <h2 className="mt-2 text-3xl font-extrabold">Mapa interactivo de zonas piloto.</h2>
-            <p className="text-sm text-[#a9b5c3] mt-1 mb-8">Toca un punto del mapa para ver qué tipo de alojamiento buscamos en esa zona.</p>
+            <h2 className="mt-2 text-3xl font-extrabold">Webs para alojamientos de toda España.</h2>
+            <p className="text-sm text-[#a9b5c3] mt-1 mb-8">Toca un punto del mapa para ver con qué alojamientos trabajamos en cada zona.</p>
 
             <div className="flex flex-wrap gap-2 mb-6">
               {[['todos', '🌐 Todos en España'], ['hoteles', '🏨 Hoteles Urbanos'], ['cabanas', '🏡 Casas Rurales'], ['resorts', '🌴 Resorts de Costa'], ['apartamentos', '🏢 Apartamentos']].map(([k, l]) => (
@@ -242,8 +235,8 @@ export default function Home() {
               <div className="relative min-h-[340px] bg-[#0e131a] border border-[#34404e] rounded-2xl p-6 overflow-hidden flex flex-col justify-between shadow-2xl">
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] bg-[size:24px_24px]"></div>
                 <div className="relative z-10 flex items-center justify-between border-b border-[#34404e]/80 pb-3">
-                  <span className="text-xs font-mono font-bold text-[#a9b5c3] tracking-wider uppercase">ZONAS PENINSULARES E INSULARES</span>
-                  <span className="flex items-center gap-2 text-xs font-bold text-[#25d6e8]"><span className="h-2 w-2 rounded-full bg-[#25d6e8] animate-ping"></span>Piloto abierto</span>
+                  <span className="text-xs font-mono font-bold text-[#a9b5c3] tracking-wider uppercase">PENÍNSULA E ISLAS</span>
+                  <span className="flex items-center gap-2 text-xs font-bold text-[#25d6e8]"><span className="h-2 w-2 rounded-full bg-[#25d6e8] animate-ping"></span>Trabajamos en toda España</span>
                 </div>
                 <div className="relative z-10 my-12 min-h-[200px] w-full">
                   {zones.map((z) => (
@@ -256,23 +249,23 @@ export default function Home() {
                     </button>
                   ))}
                 </div>
-                <p className="relative z-10 text-xs text-[#a9b5c3] italic">💡 Toca un marcador para ver qué hoteles piloto buscamos.</p>
+                <p className="relative z-10 text-xs text-[#a9b5c3] italic">💡 Toca un marcador para ver qué hacemos en cada zona.</p>
               </div>
 
               <div className={card + ' p-6 flex flex-col justify-between'}>
                 <div>
                   <div className="flex items-center justify-between border-b border-[#34404e] pb-3">
-                    <span className={eyebrow + ' text-[#25d6e8]'}>ZONA PILOTO</span>
+                    <span className={eyebrow + ' text-[#25d6e8]'}>ZONA</span>
                     <span className="text-xs font-mono text-[#c5f34c]">{zone.ciudad}</span>
                   </div>
                   <h3 className="mt-4 text-xl font-bold text-white">{zone.nombre}</h3>
                   <div className="mt-4 rounded-xl bg-[#0e131a] border border-[#34404e] p-4 text-xs space-y-2">
-                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Buscamos:</span><span className="font-bold text-[#c5f34c]">{zone.foco}</span></div>
-                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Estado:</span><span className="font-bold text-[#25d6e8]">Plazas piloto abiertas</span></div>
+                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Trabajamos con:</span><span className="font-bold text-[#c5f34c]">{zone.foco}</span></div>
+                    <div className="flex justify-between"><span className="text-[#a9b5c3]">Web:</span><span className="font-bold text-[#25d6e8]">Desde 150 €</span></div>
                   </div>
                   <p className="mt-5 text-sm text-[#c7d0da] leading-relaxed bg-[#12161d] p-3 rounded-lg border-l-2 border-[#25d6e8]">{zone.texto}</p>
                 </div>
-                <a href="#contacto" className="mt-6 block w-full rounded-full bg-[#25d6e8] py-2.5 text-center text-xs font-bold text-[#071014] hover:bg-[#1fbecf] transition-all">Quiero ser alojamiento piloto</a>
+                <a href="#contacto" className="mt-6 block w-full rounded-full bg-[#25d6e8] py-2.5 text-center text-xs font-bold text-[#071014] hover:bg-[#1fbecf] transition-all">Pedir mi web</a>
               </div>
             </div>
           </div>
@@ -299,7 +292,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <p className={eyebrow + ' text-[#c5f34c]'}>NUESTRO COMPROMISO</p>
-              <h2 className="mt-2 text-3xl font-extrabold">Lo que te prometemos.</h2>
+              <h2 className="mt-2 text-3xl font-extrabold">Cómo trabajamos.</h2>
             </div>
             <div className="grid gap-6 md:grid-cols-2">
               {PLEDGES.map(([ic, t, d, c]) => (
@@ -318,7 +311,7 @@ export default function Home() {
             <div>
               <p className={eyebrow + ' text-[#25d6e8]'}>CONTACTO DIRECTO</p>
               <h2 className="mt-4 text-3xl font-extrabold">Cuéntanos qué necesitas.</h2>
-              <p className="mt-4 text-sm text-[#a9b5c3]">Rellena el formulario o llámanos. Te respondemos sin compromiso y te decimos el precio exacto.</p>
+              <p className="mt-4 text-sm text-[#a9b5c3]">Rellena el formulario o llámanos. Te respondemos sin compromiso y te decimos el precio exacto, ¿vale?</p>
               <div className={card + ' mt-6 space-y-3 p-5'}>
                 <p className="text-sm text-white font-bold">Atención directa:</p>
                 <p className="text-sm text-[#25d6e8]">📞 Daniel: <a href="tel:+34647564733" className="text-white font-mono">+34 647 56 47 33</a></p>
@@ -348,7 +341,7 @@ export default function Home() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-sm font-bold text-white">¿Qué necesitas? (web nueva, mejorar la que tienes, software de gestión…)</label>
+                <label className="mb-1 block text-sm font-bold text-white">¿Qué necesitas? (web nueva, mejorar la que tienes…)</label>
                 <textarea name="mensaje" rows="4" value={form.mensaje} onChange={onChange} required className={field}></textarea>
               </div>
               <input type="text" name="website" value={form.website} onChange={onChange} tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
@@ -364,8 +357,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl space-y-3 text-xs text-[#a9b5c3]">
           <p className="font-bold text-white text-sm">M&D Solutions Technology</p>
           <p>Daniel (+34 647 56 47 33) · María Elena (+54 9 362 539 1283) · mdsolutionstecnology@gmail.com</p>
-          {/* TODO: completar razón social, NIF y domicilio (obligatorio por LSSI) */}
-          <p>Titular: [razón social o nombre completo] · NIF [número] · Domicilio [dirección]. Los datos del formulario se usan solo para responder tu consulta; puedes pedir su acceso o eliminación por correo.</p>
+          <p>Los datos que nos envías por el formulario solo se usan para responderte.</p>
           <p>&copy; {new Date().getFullYear()} M&D Solutions Technology. Todos los derechos reservados.</p>
         </div>
       </footer>
