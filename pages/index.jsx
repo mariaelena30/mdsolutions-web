@@ -138,7 +138,7 @@ export default function Home() {
 
       <main>
         <section id="inicio" className="relative isolate flex min-h-[min(calc(100svh-72px),780px)] items-center overflow-hidden border-b border-[#34404e] py-10 sm:py-12">
-          <img src={BGU('1658922184330-001b78430070')} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-[0.55]" />
+          <img src={BGU('1700454042411-0828b4d045ee')} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-[0.55]" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0a0c10]/95 via-[#0a0c10]/60 to-[#0a0c10]/20 max-lg:bg-gradient-to-b max-lg:from-[#0a0c10]/90 max-lg:via-[#0a0c10]/60 max-lg:to-[#0a0c10]/70"></div>
           <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 lg:grid-cols-[.92fr_1.08fr] lg:px-8">
             <div>
@@ -257,7 +257,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="plataforma" className="border-b border-[#34404e] py-14">
+        <section id="plataforma" className="relative isolate overflow-hidden border-b border-[#34404e] py-14">
+          <Bg src={BGU('1502665672221-0a344e5e532c')} />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <div className="flex flex-wrap items-end justify-between gap-5 mb-6">
               <div>
@@ -281,7 +282,6 @@ export default function Home() {
         </section>
 
         <section id="modulos" className="relative isolate overflow-hidden bg-[#12161d] py-16">
-          <Bg id={261102} />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <p className={eyebrow + ' text-[#ff9c8d]'}>{t.moEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.moTitle}</h2>
@@ -310,6 +310,7 @@ export default function Home() {
         </section>
 
         <section id="mapa-demos" className="relative isolate overflow-hidden py-16 border-t border-[#34404e]">
+          <Bg src={BGU('1666501866147-fdfd859e826e')} />
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <p className={eyebrow + ' text-[#25d6e8]'}>{t.mpEy}</p>
             <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.mpTitle}</h2>
@@ -362,7 +363,6 @@ export default function Home() {
         </section>
 
         <section id="preguntas" className="relative isolate overflow-hidden bg-[#12161d] py-16 border-t border-[#34404e]">
-          <Bg id={19765743} />
           <div className="mx-auto max-w-4xl px-5">
             <p className={eyebrow + ' text-[#25d6e8] text-center'}>{t.fqEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl text-center">{t.fqTitle}</h2>
@@ -398,7 +398,7 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="relative isolate overflow-hidden bg-[#12161d] py-16 border-t border-[#34404e]">
-          <Bg src={BGU('1658922184330-001b78430070')} />
+          <Bg src={BGU('1742081542770-3bd165470d06')} />
           <div className="mx-auto grid max-w-7xl gap-9 px-5 lg:grid-cols-[.82fr_1.18fr] lg:px-8">
             <div>
               <p className={eyebrow + ' text-[#25d6e8]'}>{t.ctEy}</p>
