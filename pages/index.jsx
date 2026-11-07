@@ -1,6 +1,29 @@
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 
+// Cuando tengas dominio propio, pon aquí su dirección (o define NEXT_PUBLIC_SITE_URL en Netlify)
+const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'https://enchanting-lolly-7663b2.netlify.app';
+const JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'M&D Solutions Technology',
+  description: 'Diseño de páginas web para hoteles, casas rurales y apartamentos turísticos en España.',
+  url: SITE,
+  logo: SITE + '/logo.png',
+  image: SITE + '/logo.png',
+  telephone: '+34657564733',
+  email: 'mdsolutionstecnology@gmail.com',
+  areaServed: { '@type': 'Country', name: 'España' },
+  availableLanguage: ['es', 'en', 'ca', 'fr'],
+  makesOffer: {
+    '@type': 'Offer',
+    name: 'Página web para alojamientos',
+    priceCurrency: 'EUR',
+    price: '150',
+    description: 'Desde 150 € pago único. Mantenimiento opcional 4 € al mes.',
+  },
+};
+
 const SLIDES = [
   { label: 'Reservas', bg: 'rgb(22, 37, 42)', fg: 'rgb(37, 214, 232)', img: 'https://images.pexels.com/photos/5371683/pexels-photo-5371683.jpeg', alt: 'Recepción de hotel' },
   { label: 'Habitaciones', bg: 'rgb(37, 37, 26)', fg: 'rgb(197, 243, 76)', img: 'https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=800', alt: 'Habitación de hotel boutique' },
@@ -110,7 +133,19 @@ export default function Home() {
       <Head>
         <title>M&D Solutions Technology | Webs para alojamientos en España</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Webs para hoteles, casas rurales y apartamentos turísticos desde 150 €. Mantenimiento por 4 € al mes. Hablas directamente con nosotros." />
+        <meta name="description" content="Webs para hoteles, casas rurales y apartamentos turísticos desde 150 €. Lista en 3 a 5 días, en 4 idiomas y con WhatsApp directo. Mantenimiento opcional por 4 € al mes." />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#0a0c10" />
+        <link rel="canonical" href={SITE + '/'} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:site_name" content="M&D Solutions Technology" />
+        <meta property="og:title" content="Webs para alojamientos en España desde 150 € | M&D Solutions" />
+        <meta property="og:description" content="Tu web para hotel, casa rural o apartamento turístico: lista en 3 a 5 días, en 4 idiomas y con WhatsApp directo." />
+        <meta property="og:url" content={SITE + '/'} />
+        <meta property="og:image" content={SITE + '/logo.png'} />
+        <meta name="twitter:card" content="summary" />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD) }} />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Work+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
       </Head>
 
