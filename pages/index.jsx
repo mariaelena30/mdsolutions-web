@@ -68,11 +68,53 @@ const LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQQAAADzCAYAAABg6Ggf
 const WA_NUMBER = '34657564733';
 const BGU = (id) => 'https://images.unsplash.com/photo-' + id + '?auto=format&fit=crop&w=1200&q=60';
 const BG = (id) => 'https://images.pexels.com/photos/' + id + '/pexels-photo-' + id + '.jpeg?auto=compress&cs=tinysrgb&w=1200';
-function Bg({ id, src }) {
+const BANDS = {
+  es: [
+    { k: 'Toda España', t: 'De Galicia a Canarias, tu alojamiento en internet', s: 'Webs para hoteles, casas rurales y apartamentos de cualquier rincón del país.' },
+    { k: 'Hechas con cariño', t: 'Tu alojamiento merece una web a su altura', s: 'Fotos grandes, textos claros y un botón de WhatsApp para que te escriban directo.' },
+  ],
+  en: [
+    { k: 'All of Spain', t: 'From Galicia to the Canary Islands, your property online', s: 'Websites for hotels, rural houses and apartments anywhere in the country.' },
+    { k: 'Made with care', t: 'Your property deserves a website that does it justice', s: 'Big photos, clear text and a WhatsApp button so guests can message you directly.' },
+  ],
+  ca: [
+    { k: 'Tot Espanya', t: 'De Galícia a Canàries, el teu allotjament a internet', s: 'Webs per a hotels, cases rurals i apartaments de qualsevol racó del país.' },
+    { k: 'Fetes amb cura', t: 'El teu allotjament es mereix una web a la seva altura', s: "Fotos grans, textos clars i un botó de WhatsApp perquè t'escriguin directament." },
+  ],
+  fr: [
+    { k: "Toute l'Espagne", t: 'De la Galice aux Canaries, votre hébergement en ligne', s: 'Sites web pour hôtels, maisons rurales et appartements partout dans le pays.' },
+    { k: 'Faits avec soin', t: 'Votre hébergement mérite un site à sa hauteur', s: "De grandes photos, des textes clairs et un bouton WhatsApp pour qu'on vous écrive directement." },
+  ],
+};
+
+// Bandera de España dibujada con CSS (siempre se ve, no depende de ninguna foto)
+function Flag({ className = '' }) {
+  return (
+    <span aria-hidden="true" className={'inline-block shrink-0 overflow-hidden rounded-[3px] ring-1 ring-white/25 ' + className} style={{ width: 34, height: 23, background: 'linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%)' }} />
+  );
+}
+function FlagBar({ className = '' }) {
+  return <div aria-hidden="true" className={'h-[10px] w-full ' + className} style={{ background: 'linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%)' }} />;
+}
+function Band({ src, pos = 'center', data }) {
+  return (
+    <div className="relative isolate overflow-hidden border-y border-[#34404e]">
+      <img src={src} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: pos, opacity: 0.85 }} />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0a0c10]/85 via-[#0a0c10]/45 to-[#0a0c10]/5 max-md:from-[#0a0c10]/80 max-md:via-[#0a0c10]/60 max-md:to-[#0a0c10]/50"></div>
+      <div className="mx-auto flex min-h-[260px] max-w-[1700px] flex-col justify-center gap-3 px-5 py-12 sm:min-h-[340px] sm:px-8 xl:px-12 2xl:px-16">
+        <span className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-[#c5f34c]"><Flag />{data.k}</span>
+        <h2 className="max-w-3xl break-words text-2xl font-extrabold leading-tight sm:text-3xl lg:text-4xl">{data.t}</h2>
+        <p className="max-w-xl text-base text-[#e4eaf1] sm:text-lg">{data.s}</p>
+      </div>
+      <FlagBar />
+    </div>
+  );
+}
+function Bg({ id, src, o = 0.5 }) {
   return (
     <>
-      <img src={src || BG(id)} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.4]" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0c10]/80 via-[#0a0c10]/35 to-[#0a0c10]/85"></div>
+      <img src={src || BG(id)} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover" style={{ opacity: o }} />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0c10]/75 via-[#0a0c10]/30 to-[#0a0c10]/80"></div>
     </>
   );
 }
@@ -85,6 +127,7 @@ export default function Home() {
   const [lang, setLang] = useState('es');
   const [demo, setDemo] = useState(null);
   const t = I18N[lang];
+  const bd = BANDS[lang] || BANDS.es;
   const prices = PRICES.map((x, i) => ({ ...x, ...t.prices[i] }));
   const modsAll = MODULES.map((m, i) => ({ ...m, ...t.modules[i] }));
   const zonesAll = ZONES.map((z, i) => ({ ...z, ...t.zones[i] }));
@@ -152,7 +195,7 @@ export default function Home() {
       <div className="h-1 w-full bg-gradient-to-r from-[#25d6e8] via-[#9a6cff] via-[#ff765e] to-[#c5f34c] bg-[length:200%_100%] animate-pulse"></div>
 
       <header className="sticky top-0 z-50 border-b border-[#34404e] bg-[#0a0c10]/95 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 lg:px-8">
+        <nav className="mx-auto flex max-w-[1700px] items-center justify-between gap-4 px-5 py-4 sm:px-8 xl:px-12 2xl:px-16">
           <a href="#inicio" className="flex items-center gap-3 font-extrabold hover:text-[#25d6e8] transition-colors"><img src={LOGO} alt="" className="h-9 w-auto" /><span className="hidden sm:inline">M&D Solutions</span></a>
           <div className="hidden items-center gap-6 lg:flex text-sm font-semibold text-slate-300">
             {t.nav.map(([id, l]) => <a key={id} href={'#' + id} className="hover:text-[#25d6e8] transition-colors">{l}</a>)}
@@ -173,13 +216,14 @@ export default function Home() {
       </header>
 
       <main>
-        <section id="inicio" className="relative isolate flex min-h-[min(calc(100svh-72px),780px)] items-center overflow-hidden border-b border-[#34404e] py-10 sm:py-12">
+        <section id="inicio" className="relative isolate flex min-h-[min(calc(100svh-72px),820px)] items-center overflow-hidden border-b border-[#34404e] py-10 sm:py-12">
           <img src={BGU('1700454042411-0828b4d045ee')} alt="" aria-hidden="true" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover object-center opacity-[0.55]" />
           <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0a0c10]/95 via-[#0a0c10]/60 to-[#0a0c10]/20 max-lg:bg-gradient-to-b max-lg:from-[#0a0c10]/90 max-lg:via-[#0a0c10]/60 max-lg:to-[#0a0c10]/70"></div>
-          <div className="mx-auto grid w-full max-w-7xl items-center gap-10 px-5 lg:grid-cols-[.92fr_1.08fr] lg:px-8">
+          <div className="mx-auto grid w-full max-w-[1700px] items-center gap-10 px-5 lg:grid-cols-[.92fr_1.08fr] sm:px-8 xl:px-12 2xl:px-16">
             <div>
               <div className="mb-6 flex items-center gap-4"><img src={LOGO} alt="M&D Solutions Technology" className="h-16 w-auto sm:h-20" /><div><p className="text-2xl font-extrabold leading-tight">M&D Solutions</p><p className="text-sm font-semibold uppercase tracking-widest text-[#a9b5c3]">Technology</p><p className="mt-1 text-sm font-bold text-[#25d6e8]">{t.tag}</p></div></div>
-              <h1 className="mt-5 max-w-3xl break-words text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl xl:text-6xl">{t.h1}</h1>
+              <div className="mt-5 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-[#c5f34c]"><Flag />{bd[0].k}</div>
+              <h1 className="mt-3 max-w-3xl break-words text-3xl font-extrabold leading-[1.1] sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl">{t.h1}</h1>
               <p className="mt-6 max-w-xl text-base leading-7 text-[#c7d0da] sm:text-lg">{t.sub}</p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a href="#contacto" className="rounded-full bg-[#ff765e] px-6 py-3 text-center font-bold text-[#17100e] hover:opacity-90 transition-opacity">{t.cta1}</a>
@@ -210,10 +254,11 @@ export default function Home() {
               <p className="mt-5 text-xs text-[#a9b5c3]">{t.calcNote}</p>
             </div>
           </div>
+        <FlagBar className="absolute inset-x-0 bottom-0" />
         </section>
 
         <section id="precios" className="relative isolate overflow-hidden bg-[#12161d] py-16 border-b border-[#34404e]">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <p className={eyebrow + ' text-[#c5f34c]'}>{t.prEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.prTitle}</h2>
             <p className="mt-3 max-w-2xl text-[#c7d0da]">{t.prSub}</p>
@@ -233,8 +278,10 @@ export default function Home() {
           </div>
         </section>
 
+        <Band src={BGU('1742081542770-3bd165470d06')} pos="center 40%" data={bd[0]} />
+
         <section id="ejemplos" className="relative isolate overflow-hidden border-b border-[#34404e] py-16">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <p className={eyebrow + ' text-[#25d6e8]'}>{t.exEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.exTitle}</h2>
             <p className="mt-3 max-w-2xl text-[#c7d0da]">{t.exSub}</p>
@@ -278,8 +325,10 @@ export default function Home() {
           </div>
         </section>
 
+        <Band src={BGU('1658922184330-001b78430070')} pos="center 35%" data={bd[1]} />
+
         <section id="incluye" className="relative isolate overflow-hidden border-b border-[#34404e] py-16">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <p className={eyebrow + ' text-[#c5f34c]'}>{t.inEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.inTitle}</h2>
             <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -295,7 +344,7 @@ export default function Home() {
 
         <section id="plataforma" className="relative isolate overflow-hidden border-b border-[#34404e] py-14">
           <Bg src={BGU('1502665672221-0a344e5e532c')} />
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <div className="flex flex-wrap items-end justify-between gap-5 mb-6">
               <div>
                 <p className={eyebrow + ' text-[#25d6e8]'}>{t.plEy}</p>
@@ -318,7 +367,7 @@ export default function Home() {
         </section>
 
         <section id="modulos" className="relative isolate overflow-hidden bg-[#12161d] py-16">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <p className={eyebrow + ' text-[#ff9c8d]'}>{t.moEy}</p>
             <h2 className="mt-3 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.moTitle}</h2>
             <div className="mt-6 flex flex-wrap gap-2">
@@ -347,7 +396,7 @@ export default function Home() {
 
         <section id="mapa-demos" className="relative isolate overflow-hidden py-16 border-t border-[#34404e]">
           <Bg src={BGU('1666501866147-fdfd859e826e')} />
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <p className={eyebrow + ' text-[#25d6e8]'}>{t.mpEy}</p>
             <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.mpTitle}</h2>
             <p className="text-sm text-[#a9b5c3] mt-1 mb-8">{t.mpSub}</p>
@@ -416,7 +465,7 @@ export default function Home() {
         </section>
 
         <section id="compromiso" className="relative isolate overflow-hidden py-16 border-t border-[#34404e]">
-          <div className="mx-auto max-w-7xl px-5 lg:px-8">
+          <div className="mx-auto max-w-[1700px] px-5 sm:px-8 xl:px-12 2xl:px-16">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <p className={eyebrow + ' text-[#c5f34c]'}>{t.cmEy}</p>
               <h2 className="mt-2 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.cmTitle}</h2>
@@ -434,8 +483,8 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="relative isolate overflow-hidden bg-[#12161d] py-16 border-t border-[#34404e]">
-          <Bg src={BGU('1742081542770-3bd165470d06')} />
-          <div className="mx-auto grid max-w-7xl gap-9 px-5 lg:grid-cols-[.82fr_1.18fr] lg:px-8">
+          <Bg src={BGU('1742081542770-3bd165470d06')} o={0.7} />
+          <div className="mx-auto grid max-w-[1700px] gap-9 px-5 lg:grid-cols-[.82fr_1.18fr] sm:px-8 xl:px-12 2xl:px-16">
             <div>
               <p className={eyebrow + ' text-[#25d6e8]'}>{t.ctEy}</p>
               <h2 className="mt-4 text-2xl font-extrabold sm:text-3xl lg:text-4xl">{t.ctTitle}</h2>
@@ -481,7 +530,7 @@ export default function Home() {
         </section>
       </main>
 
-      <a href={'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(t.waMsg)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="fixed bottom-4 right-4 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 sm:bottom-5 sm:right-5 sm:px-5 text-sm font-bold text-[#06210f] shadow-2xl hover:opacity-90 transition-opacity">
+      <a href={'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(t.waMsg)} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="fixed bottom-16 right-4 z-50 flex items-center gap-2 rounded-full bg-[#25D366] px-4 py-3 sm:bottom-16 sm:right-5 sm:px-5 text-sm font-bold text-[#06210f] shadow-2xl hover:opacity-90 transition-opacity">
         <span aria-hidden="true">💬</span><span className="hidden sm:inline">{t.wa}</span>
       </a>
 
