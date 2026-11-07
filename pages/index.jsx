@@ -94,23 +94,24 @@ function Flag({ className = '' }) {
   );
 }
 function FlagBar({ className = '' }) {
-  return <div aria-hidden="true" className={'h-[10px] w-full ' + className} style={{ background: 'linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%)' }} />;
+  return <div aria-hidden="true" className={'h-[4px] w-full opacity-80 ' + className} style={{ background: 'linear-gradient(#aa151b 0 25%, #f1bf00 25% 75%, #aa151b 75% 100%)' }} />;
 }
 function Band({ src, pos = 'center', data }) {
   return (
-    <div className="relative isolate overflow-hidden border-y border-[#34404e]">
-      <img src={src} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: pos, opacity: 0.85 }} />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0a0c10]/85 via-[#0a0c10]/45 to-[#0a0c10]/5 max-md:from-[#0a0c10]/80 max-md:via-[#0a0c10]/60 max-md:to-[#0a0c10]/50"></div>
-      <div className="mx-auto flex min-h-[260px] max-w-[1700px] flex-col justify-center gap-3 px-5 py-12 sm:min-h-[340px] sm:px-8 xl:px-12 2xl:px-16">
-        <span className="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-[#c5f34c]"><Flag />{data.k}</span>
-        <h2 className="max-w-3xl break-words text-2xl font-extrabold leading-tight sm:text-3xl lg:text-4xl">{data.t}</h2>
-        <p className="max-w-xl text-base text-[#e4eaf1] sm:text-lg">{data.s}</p>
+    <div className="relative isolate overflow-hidden">
+      <img src={src} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover" style={{ objectPosition: pos, opacity: 0.45 }} />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-[#0a0c10]/90 via-[#0a0c10]/55 to-[#0a0c10]/25 max-md:from-[#0a0c10]/85 max-md:to-[#0a0c10]/60"></div>
+      <div className="absolute inset-x-0 top-0 -z-10 h-20 bg-gradient-to-b from-[#0a0c10] to-transparent"></div>
+      <div className="absolute inset-x-0 bottom-0 -z-10 h-20 bg-gradient-to-t from-[#0a0c10] to-transparent"></div>
+      <div className="mx-auto flex min-h-[170px] max-w-[1700px] flex-col justify-center gap-2 px-5 py-10 sm:min-h-[220px] sm:px-8 xl:px-12 2xl:px-16">
+        <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-[#c5f34c] sm:text-sm"><Flag />{data.k}</span>
+        <h2 className="max-w-3xl break-words text-xl font-extrabold leading-tight sm:text-2xl lg:text-3xl">{data.t}</h2>
+        <p className="max-w-xl text-sm text-[#c7d0da] sm:text-base">{data.s}</p>
       </div>
-      <FlagBar />
     </div>
   );
 }
-function Bg({ id, src, o = 0.5 }) {
+function Bg({ id, src, o = 0.4 }) {
   return (
     <>
       <img src={src || BG(id)} alt="" aria-hidden="true" loading="lazy" className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover" style={{ opacity: o }} />
@@ -483,7 +484,7 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="relative isolate overflow-hidden bg-[#12161d] py-16 border-t border-[#34404e]">
-          <Bg src={BGU('1742081542770-3bd165470d06')} o={0.7} />
+          <Bg src={BGU('1742081542770-3bd165470d06')} o={0.5} />
           <div className="mx-auto grid max-w-[1700px] gap-9 px-5 lg:grid-cols-[.82fr_1.18fr] sm:px-8 xl:px-12 2xl:px-16">
             <div>
               <p className={eyebrow + ' text-[#25d6e8]'}>{t.ctEy}</p>
